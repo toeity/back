@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<style>
+    * {
+        font-size: 9px;
+        font-family: 'Sarabun', sans-serif;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <div style="width: 85%; margin: 0 7.5%;">
+        <div style="text-align:left ; padding-left: 50px;">
+
+            <b>  การพัฒนาต้นแบบอุปกรณ์ตรวจจับ ติดตามและแจ้งเตือน
+                สําหรับป้องกันเด็กตกค้างภายในรถวยการประยุกต์ใช้บอร์ดสมองกลฝังตัว</b>
+            <p style="font-size:6px;">A PROTOTYPE DEVELOPMENT OF DETECTION DEVICE AND ALERT FOR PREVENTING CHILDREN INSIDE THE CAR WITH
+                EMBEDDED SYSTEMS.</p>
+        </div>
+        <div style="margin-top: 50px; ; text-align:center ; padding-left: 50px;">
+            <b style="margin-bottom: 50px;">ผู้ใช้งานภายในแอปพลิเคชั่น</b>
+            <table width="100%">
+               
+                <thead>
+                    <tr>
+                        <th width="15%">รหัสผู้ใช้งาน</th>
+                        <th width="40%">อีเมล์ผู้ใช้</th>
+                        <th width="15%">สิทธิที่</th>
+                        <th width="30%">สิทธิผู้ใช้</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                <% if (user.length> 0) { %>
+                                    <% user.forEach(user=> {%>
+                                        <tr>
+                                            <td>
+                                                <%= user.user_id %>
+                                            </td>
+                                            <td>
+                                                <%= user.user_email %>
+                                            </td>
+                                            <td>
+                                                <%= user.auth_id %>
+                                            </td>
+                                            <td>
+                                                <%= user.auth?.auth_name %>
+                                            </td>
+                                        </tr>
+                                        <% });%>
+                                            <% }%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

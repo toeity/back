@@ -2,32 +2,23 @@ const Sequelize = require('sequelize');
 const DB = require('../Database/DB');
 
 module.exports = DB.sequelize.define(
-    'user',
+    'event',
     {
-        user_id:{
+        event_id:{
             type: Sequelize.INTEGER,
             unique: true,
             primaryKey: true,
             autoIncrement: true
         },
-        user_email:{
+        event_name:{
             type: Sequelize.STRING,
         },
-        user_pass:{
-            type: Sequelize.STRING,
-        },
-        auth_id:{
+        event_car:{
             type: Sequelize.INTEGER,
         },
-        user_fname:{
-            type: Sequelize.STRING,
-        },
-        user_lname:{
-            type: Sequelize.STRING,
-        },
-    }
-    , {
-        tableName: 'user',
+    },
+    {
+        tableName: 'event',
         timestamps:false
     }
     );

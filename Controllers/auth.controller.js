@@ -2,29 +2,42 @@ const config = require('../Configs/auth.config');
 const User = require('../Models/User');
 const jwt = require('jsonwebToken');
 const bcrypt = require("bcryptjs");
+const Auth = require('../Models/Auth');
+exports.addAuth = (req,res) =>{
+    const eventData = {
+        auth_name:req.body.auth_name,
+    }
+    Auth.create(eventData).then(result=>{
+        return res.status(200).json({
+            response: "auth create Success!!"
+        })
+    }).catch(err=>{
+        return res.status(500).json({
+            response: "auth cannot created!!!"
+        })
+    })
+}
+
+
 
 exports.register = (req, res) => {
     const emailRegexp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const userData = {
-        par_id: req.body.par_id,
-        par_fname: req.body.par_fname,
-        par_lname: req.body.par_lname,
-        fam_sta_id: req.body.fam_sta_id,
-        par_tel: req.body.par_tel,
-        par_email: req.body.par_email,
-        par_pass: bcrypt.hashSync(req.body.par_pass,15) ,
-        stu_id: req.body.stu_id,
+        auth_id: req.body.auth_id,
+        user_id: req.body.user_id,
+        user_email: req.body.user_email,
+        user_pass: bcrypt.hashSync(req.body.user_pass,15) ,
     }
     User.findOne({
         where:{
-            par_id: userData.par_id,
-            par_email : userData.par_email
+            // user_id: userData.user_id,
+            user_email : userData.user_email
 
         }
     })
     .then((user) => {
         if(!user){
-            if(emailRegexp.test(userData.par_email) && req.body.par_pass.length >= 15 )
+            if(emailRegexp.test(userData.user_email) && req.body.user_pass.length >= 5 )
         {
             User.create(userData)
             .then(() => {
@@ -49,7 +62,7 @@ exports.register = (req, res) => {
 
 exports.login = (req, res) => {
     User.findOne({
-        where: {par_email: req.params.email
+        where: {user_email: req.body.user_email,
         }
     })
     .then((user) => {
@@ -57,7 +70,7 @@ exports.login = (req, res) => {
             return res.status(404).send({massage: "User not found."});
         }
         var passwordIsValid = bcrypt.compareSync(
-            req.body.userPassword, par_pass
+            req.body.user_pass, user.user_pass
         );
         if(!passwordIsValid){
             return res.status(401).send({

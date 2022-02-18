@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;200;300;400;500&display=swap" rel="stylesheet" />
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<style>
+  * {
+    font-size: 9px;
+    font-family: "Sarabun", sans-serif;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<body>
+  <%=JSON.stringify(dataStudent)%>
+    <div style="width: 85%; margin: 0 7.5%">
+      <div style="text-align: left; padding-left: 50px">
+        <b>
+          การพัฒนาต้นแบบอุปกรณ์ตรวจจับ ติดตามและแจ้งเตือน
+          สําหรับป้องกันเด็กตกค้างภายในรถวยการประยุกต์ใช้บอร์ดสมองกลฝังตัว</b>
+        <p style="font-size: 5px">
+          A PROTOTYPE DEVELOPMENT OF DETECTION DEVICE AND ALERT FOR PREVENTING
+          CHILDREN INSIDE THE CAR WITH EMBEDDED SYSTEMS.
+        </p>
+      </div>
+      <div style="margin-top: 50px; text-align: center; padding-left: 50px">
+        <b>รายงานกิจกรรม</b>
+
+        <table width="100%">
+          <thead>
+            <tr>
+              <th width="10%">รหัสนักเรียน</th>
+              <th width="15%">ชื่อ</th>
+              <th width="15%">นามสกุล</th>
+              <th width="20%">ที่อยู่</th>
+              <th width="10%">รหัสสถานะ</th>
+              <th width="20%">ชื่อสถานะ</th>
+              <th width="10%">เวลา</th>
+            </tr>
+          </thead>
+          <!-- <tbody>
+            <% if (user.length> 0) { %>
+                <% user.forEach(user=> {%>
+                    <tr>
+                        <td>
+                            <%= user.user_id %>
+                        </td>
+                        <td>
+                            <%= user.user_email %>
+                        </td>
+                        <td>
+                            <%= user.auth_id %>
+                        </td>
+                        <td>
+                            <%= user.auth?.auth_name %>
+                        </td>
+                    </tr>
+                    <% });%>
+                        <% }%>
+</tbody> -->
+          <tbody>
+            <%studentData.forEach((student,index)=>{%>
+              <%console.log(student)%>
+            <tr>
+              <td rowspan="<%=student.events.length||1%>"><%=student.stu_id%></td>
+              <td rowspan="<%=student.events.length||1%>"><%=student.stu_fname%></td>
+              <td rowspan="<%=student.events.length||1%>"><%=student.stu_lname%></td>
+              <td rowspan="<%=student.events.length||1%>"><%=student.stu_address%></td>
+              <%if(student.events[0]){%>
+          <td><%=student.events[0]?.event_id%></td>
+          <td><%=student.events[0]?.event_name%></td>
+          <td><%=student.events[0]?.timestamp%></td>
+          <%}%>
+            <%student.events.shift()%>
+            <%if(student.events.length>0){%>
+              <%student.events.forEach((event,event_index)=>{ %>
+                <tr>
+                  <td><%=event.event_id%></td>
+                  <td><%=event.event_name%></td>
+                  <td><%=event.timestamp%></td>
+                </tr>
+                <%})%>
+              <%}else{%>
+                <td></td>
+              <td></td>
+              <td></td><%}})%>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>
+
+</html>

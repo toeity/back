@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />  
+    <link rel="stylesheet" href="/css/cardata.css"/>
+    <title>Cardata Page</title>
+</head>
+<body>
+    <div class="container">
+        
+        
+		<nav class="menu">
+
+			<ul>
+                <div class="logo"><img  src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px; margin:30px 70px 30px"></div>
+				<input type="radio"  name="menu" id="archive" checked>
+                
+				<li>
+					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
+					<a href="#" ><ion-icon name="home-outline" class="icon"></ion-icon>dashboard</a>
+					<a href="#" ><ion-icon name="people-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
+					<a href="#" ><ion-icon name="person-add-outline" class="icon"></ion-icon>เพิ่มสิทธิ์ผู้ใช้</a>
+                    <a href="#" ><ion-icon name="settings-outline" class="icon"></ion-icon>ข้อมูลรถ</a>
+                    <a href="#" ><ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
+
+				</li>
+				
+			</ul>
+		</nav>
+		<main class="main">
+			<div class="card">
+				<h2><ion-icon name="settings-outline" class="icon"></ion-icon>ข้อมูลรถ</h2>
+			
+
+<div ng-app="app" style="padding:15px;">
+	<div ng-controller="MainController">
+		<div class="row form-group">
+			<div class="col-md-6">
+				<label for="filter">Filter by Name</label>
+				<input ng-model="fdata.$" class="form-control" type="text" name="pname" id="pname" placeholder="Type name" />
+			</div>
+			<div class="col-md-2">
+				<label for="filter">Code</label>
+				<input ng-model="fdata.id" class="form-control" type="text" name="code" id="code" placeholder="Type code" />
+			</div>
+			<div class="col-md-2">
+				<label for="status">Status</label>
+				<select ng-model="fdata.status" class="form-control" name="status" id="status">
+				<option value="" selected>All</option>
+				<option value="Active">Active</option>
+				<option value="Inactive">Inactive</option>
+				<option value="Setup">Setup</option>
+			</select>
+			</div>
+			<div class="col-md-2">
+				<label for="limit">Show Records</label>
+				<select ng-model="limit" class="form-control" name="limit" id="limit">
+					<option value="" selected>All</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="75">75</option>					
+				</select>
+			</div>			
+		</div>
+		<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->
+		<table class="table hoverTable table-condensed table-striped" id="diagnosis_list">
+			<tr>
+      
+        
+				<th>ID</th>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Bed | Bath</th>
+				<th>Sleeps</th>
+       			<th >Actions</th>
+				<th>Status</th>
+			</tr>
+			<tr ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
+				<td>{{ property.id }}</td>
+				<td>{{ property.name }}</td>
+				<td>{{ property.type }}</td>
+				<td>{{ property.bed +' | '+ property.bath }}</td>
+				<td>{{ property.sleeps }}</td>
+				<td>{{ property.status }}</td>
+                        <td>
+							<button  id="car-view"><ion-icon name="eye-outline"></ion-icon></button>
+							<button  id="car-edit"><ion-icon name="create-outline"></ion-icon></button>
+							<button  id="car-delete"><ion-icon name="trash-outline"></ion-icon></button>
+                </td>
+			</tr>
+		</table>
+    
+    <button id="appendToTable">Append to table</button>
+
+		</main>
+	</div>
+
+	<script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
+    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+<!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script src="/js/car.js"></script>
+</body>
+</html>
