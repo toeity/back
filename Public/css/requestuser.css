@@ -1,6 +1,6 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300);
-
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet';
 * {
 	margin: 0;
 	padding: 0;
@@ -43,14 +43,16 @@ main {
 	text-align:left;
   color: #fff;
 }
-p {
-	margin-bottom: 20px;
-	line-height: 26px;
-}
-p::first-letter {
-	font-size: 200%;
+h3 {
 	font-weight: bold;
-  color: #000;
+	margin-bottom: 50px;
+	font-size: 55px;
+	text-align:left;
+  color: #fff;
+}
+p {
+	margin-bottom: 0px;
+	line-height: 26px;
 }
 li, ul label.title, ul, a {
 	width: 100%;
@@ -64,6 +66,7 @@ ul label {
 }
 ul{
   height: 300px;
+
 }
 ul li{
 	height: 35px;
@@ -114,8 +117,7 @@ i {
 		width: 100%;
 		position: relative;
 	}
-} 
-
+}
 .card
 {   
     position: fixed;
@@ -132,9 +134,9 @@ h2
     margin-bottom: 10px;
 }
 
-/* .ui-sortable tr {
+.ui-sortable tr {
 	cursor:pointer;
-} */
+} 
 		
 /* .ui-sortable tr:hover {
 	background:rgba(244,251,17,0.45);

@@ -116,13 +116,13 @@ label {
   display: block;
   font-size: 14px;
   height: 14px;
-  margin-top: 6px;
+  margin-top: 8px;
   margin-bottom: 5px;
 }
 input {
   background: transparent;
   border: 0;
-  color: #e2d5d5;
+  color: #eba729;
   font-size: 20px;
   height: 30px;
   line-height: 30px;

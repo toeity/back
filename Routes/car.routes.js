@@ -1,4 +1,4 @@
-const controller = require('../Controllers/view.controller');
+const controller = require('../Controllers/car.controller');
 
 module.exports = function(app){
     app.use(function(req, res, next){
@@ -9,10 +9,10 @@ module.exports = function(app){
        next();
     });
     app.post(
-        '/api/view',
-        controller.addView
+        '/api/car',
+        controller.addCar
     );
 
-    app.get('/api/view',controller.getAllView)
+    app.get('/api/car',controller.getAllCar)
     
 }

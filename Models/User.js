@@ -25,6 +25,12 @@ module.exports = DB.sequelize.define(
         user_lname:{
             type: Sequelize.STRING,
         },
+        user_tel:{
+            type: Sequelize.INTEGER,
+        },
+        car_no:{
+            type: Sequelize.INTEGER,
+        },
     }
     , {
         tableName: 'user',

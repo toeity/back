@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />  
-	<link rel="stylesheet" href="/css/cardata.css" />
-	<title>Cardata Page</title>
+    <link rel="stylesheet" href="/css/authuser.css"/>
+    <title>Authuser Page</title>
 </head>
-
 <body>
-	<div class="container">
-		<nav class="menu">
+    <div class="container">
+	<nav class="menu">
 			<ul>
 				<div class="logo"><img  src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px; margin:30px 70px 30px"></div>
 				<input class="bar" type="radio"  name="menu" id="archive" checked>
@@ -33,53 +31,56 @@
 		</nav>
 		<main class="main">
 			<div class="card">
-				<h2><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</h2>
-			
-
+				<h2><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</h2>
+				
+				
 <div ng-app="app" style="padding:15px;">
 	<div ng-controller="MainController">
 		<div class="row form-group">
 			<div class="col-md-6">
-				<label for="filter">ค้นหาจากทะเบียนรถ</label>
-				<input ng-model="fdata.car_reg" class="form-control" type="text" name="pname" id="pname" placeholder="ทะเบียนรถ" />
+				<label for="filter">ค้นหา</label>
+				<input ng-model="fdata.$" class="form-control" type="text" name="pname" id="pname" placeholder="ค้นหา" />
 			</div>
 			<div class="col-md-2">
-				<label for="filter">หมายเลขรถ</label>
-				<input ng-model="fdata.car_no" class="form-control" type="text" name="code" id="car_id" placeholder="หมายเลขรถ" />
+			<label for="status">สิทธิผู้ใช้</label>
+				<select ng-model="fdata.auth_id" class="form-control" name="auth" id="auth">
+					<option value="" selected
+					>ทั้งหมด</option>
+					<option value="1">ผู้ปกครอง</option>
+					<option value="2">ครู</option>
+					<option value="3">คนขับรถ</option>
+					<option value="4">ผู้บริหาร</option>
+					<option value="5">แอดมิน</option>
+				</select>
 			</div>
 			
 		</div>
 		<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->
 		<table class="table hoverTable table-condensed table-striped" id="diagnosis_list">
 			<tr>
-      
-        
-				<th>ทะเบียนรถ</th>
-				<th>หมายเลขรถ</th>
-				<th>จำนวนที่นั่ง</th>
-				<th>คนขับรถ</th>
-				<th>ครูประจำรถ</th>
+				<th>รหัสผู้ใช้</th>
+				<th>อีเมล์</th>
+				<th>ชื่อ</th>
+				<th>นามสกุล</th>
+				<th>ประเภทผู้ใช้</th>
 				<th>จัดการ</th>
+				
 			</tr>
 			<tr ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
-				<td>{{ property.car_reg }}</td>
-				<td>{{ property.car_no }}</td>
-				<td>{{ property.car_seat }}</td>
-				<td>{{ property.driver.user_fname || "-"}} {{property.driver.user_lname}}</td>
-				<td>{{ property.teacher.user_fname || "-"}} {{property.teacher.user_fname}}</td>
-				<!-- <td>{{ property.user_fname " " property.user_lname }}</td>
-				<td>{{ property.car_no }}</td> -->
-				
+				<td>{{ property.user_id }}</td>
+				<td>{{ property.user_email }}</td>
+				<td>{{ property.user_fname }}</td>
+				<td>{{ property.user_lname }}</td>
+				<td>{{ property['auth.auth_name'] || "-"}}</td>
                         <td>
-							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Viewcar/{{property.car_no}}" role="button" class="btn btn-info"><ion-icon name="eye-outline"></ion-icon></a>
-							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Editcar/{{property.car_no}}" role="button" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
+							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Viewuser/{{property.user_id}}" role="button" class="btn btn-info"><ion-icon name="eye-outline"></ion-icon></a>
+							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Edituser/{{property.user_id}}" role="button" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
 							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Login" role="button" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></a>
 							
-						</td>
-			</tr> 
+                </td>
+			</tr>
 		</table>
-		
-		<a style="width: 80px; height: 30px"  href="http://localhost:5001/Addcar" role="button" class="btn btn-primary"><ion-icon name="add-circle-outline"  class="icon"></ion-icon>เพิ่ม</a>
+		<a style="width: 80px; height: 30px"  href="http://localhost:5001/Adduser" role="button" class="btn btn-primary"><ion-icon name="person-add-outline"  class="icon"></ion-icon>เพิ่ม</a>
 		</main>
 	</div>
 
@@ -110,7 +111,7 @@ var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selec
 app.controller("MainController", ['$scope', function($scope) {
 	
 	$scope.limit = 25;
-	$scope.column = 'car_no';
+	$scope.column = 'user_id';
 	$scope.reverseSort = false;
 	$scope.sortClass = "text-primary";
 	
@@ -132,9 +133,9 @@ app.controller("MoveCtrl", ['$scope', function($scope) {
         //Here from is returned as blank and to as undefined
 
         items.forEach(function(item) {
-          var car_idx = from.indexOf(item);
-          if (car_idx != -1) {
-              from.splice(car_idx, 1);
+          var user_idx = from.indexOf(item);
+          if (user_idx != -1) {
+              from.splice(user_idx, 1);
               to.push(item);      
           }
         });

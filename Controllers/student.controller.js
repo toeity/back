@@ -1,7 +1,7 @@
 const Student = require('../Models/Student');
 exports.addStudent = (req,res) =>{
     const eventData = {
-        stu_fname:req.body.stu_fname, stu_lname:req.body.stu_lname,stu_address:req.body.stu_address,
+        stu_fname:req.body.stu_fname, stu_lname:req.body.stu_lname,stu_address:req.body.stu_address,user_id:req.body.user_id,stdId:req.body.stdId
     }
     Student.create(eventData).then(result=>{
         return res.status(200).json({
@@ -13,8 +13,6 @@ exports.addStudent = (req,res) =>{
             response: "student cannot created!!!"
         })
     })
-
-                                                                                                                                                                                             
 }
 
 

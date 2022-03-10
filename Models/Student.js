@@ -10,6 +10,9 @@ module.exports = DB.sequelize.define(
             primaryKey: true,
             autoIncrement: true
         },
+        stdId:{
+            type: Sequelize.STRING,
+        },
         stu_fname:{
             type: Sequelize.STRING,
         },
@@ -18,6 +21,9 @@ module.exports = DB.sequelize.define(
         },
         stu_address:{
             type: Sequelize.STRING,
+        },
+        user_id:{
+            type: Sequelize.INTEGER,
         },
     }, {
         tableName: 'student',

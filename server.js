@@ -6,9 +6,8 @@ const db = require('./Database/DB');
 const admin = require('firebase-admin');
 var serviceAccount = require("./project-firebase.json");
 const path = require('path');
-
 const app = express();
-
+app.use(cors());
 
 
 //For Websites
@@ -32,17 +31,13 @@ require('./Routes/auth.routes')(app);
 require('./Routes/event.routes')(app);
 require('./Routes/student.routes')(app);
 require('./Routes/user.routes')(app);
-require('./Routes/view.routes')(app);
 require('./Routes/exportPDF.routes')(app);
-require('./Routes/site.routes')(app);
-app.get('/', (req, res) => {
-    return res.json({ server: "Hello" });
-})
 require('./Routes/exportPDFevent.routes')(app);
-app.get('/', (req, res) => {
-    return res.json({ server: "Hello" });
-})
 
+require('./Routes/site.routes')(app);
+require('./Routes/car.routes')(app); 
+
+require('./Routes/exportPDFevent.routes')(app);
 
 var dbFirebase = admin.database();
 var userRef = dbFirebase.ref("users");
@@ -69,4 +64,4 @@ app.get('/getusers/:id', (req, res) => {
     })
 })
 
-app.listen(config.PORT, () => console.log('listening on port' + config.PORT))
+app.listen(config.PORT,config.HOST, () => console.log(config.HOST+' listening on port' + config.PORT))
