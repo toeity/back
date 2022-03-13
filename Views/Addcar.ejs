@@ -1,117 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />  
-    <link rel="stylesheet" href="/css/addcar.css"/>
-    <title>Addcar Page</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />
+  <link rel="stylesheet" href="/css/addcar.css" />
+  <title>Addcar Page</title>
 </head>
+
 <body>
 
-    <div class="container">
-      <nav class="menu">
-        <ul>
-          <div class="logo"><img  src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px; margin:30px 70px 30px"></div>
-          <input class="bar" type="radio"  name="menu" id="archive" checked>
-                  
-          <li>
-            <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-            <a href="http://localhost:5001/Home" ><ion-icon name="home-outline" class="icon"></ion-icon>dashboard</a>
-            <a href="http://localhost:5001/Requestuser" ><ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
-            <a href="http://localhost:5001/Authuser" ><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</a>
-                      <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
-                      <a href="http://localhost:5001/Login" ><ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
-          
-          </li>
-          
-        </ul>
-      </nav>
-	
-		<main class="main">
-			<div class="card">
-				<h2><ion-icon name="add-circle-outline"></ion-icon>เพิ่มข้อมูลรถ</h2>
-			
+  <div class="container">
+    <nav class="menu">
+      <ul>
+        <div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
+            style="width:100px;height:100px; margin:30px 70px 30px"></div>
+        <input class="bar" type="radio" name="menu" id="archive" checked>
 
-                <form>
-                    
-                        <div class="form-group col-md-12">
-                            <label for="inputAddress">ทะเบียนรถ</label>      
-                            <input type="text"  class="form-control" id="ipcarreg" placeholder="ทะเบียนรถ">
-                          </div>
-                      <div class="form-group col-md-12">
-                        <label for="inputPassword4">หมายเลขรถ</label>
-                        <input type="text" class="form-control" id="ipcarno" placeholder="หมายเลขรถ">
-                      </div>
-                    
-                    <div class="form-group col-md-12">
-                        <label  for="inputEmail4">จำนวนที่นั่ง</label>
-                        <input type="text" class="form-control" id="ipcarseat" placeholder="จำนวนที่นั่ง">
-                      </div>
-                      <div class="form-group col-md-12">
-                        <label for="inputPassword4">คนขับรถ</label>
-                        <input type="text"  class="form-control" id="ipdriver" placeholder="คนขับรถ">
-                      </div>
-                    <div class="form-group col-md-12">
-                      <label for="inputAddress">ครูประจำรถ</label>      
-                      <input type="text"  class="form-control" id="ipteacher" placeholder="ครูประจำรถ">
-                    </div>
-                  </form> 
+        <li>
+          <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
+          <a href="http://localhost:5001/Home">
+            <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+          </a>
+          <a href="http://localhost:5001/Requestuser">
+            <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Authuser">
+            <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Cardata">
+            <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+          </a>
+          <a href="http://localhost:5001/Leaveinfo">
+            <ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
+          </a>
+          <a onclick="logout()">
+            <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <main class="main">
+      <div class="card">
+        <h2>
+          <ion-icon name="add-circle-outline"></ion-icon>เพิ่มข้อมูลรถ
+        </h2>
+
+        <%if(result.success){%>
+          <div class="alert alert-success">
+            <%=result.success%>
+          </div>
+          <%}%>
+            <%if(result.error){%>
+              <div class="alert alert-danger">
+                <%=result.error%>
+              </div>
+              <%}%>
+                <form method="post" action="/AddCar">
+
+                  <div class="form-group col-md-12">
+                    <label for="inputAddress">ทะเบียนรถ</label>
+                    <input type="text" class="form-control" name="car_reg" placeholder="ทะเบียนรถ" required>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4">หมายเลขรถ</label>
+                    <input type="text" class="form-control" name="car_no" placeholder="หมายเลขรถ" required>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">จำนวนที่นั่ง</label>
+                    <input type="text" class="form-control" name="car_seat" placeholder="จำนวนที่นั่ง" required>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4">คนขับรถ</label>
+                    <select class="form-control" name="user_driver">
+                      <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
+                        <option value="<%=item.user_id%>">
+                          <%=item.user_fname%>
+                            <%=item.user_lname%>
+                        </option>
+                        <%})%>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputAddress">ครูประจำรถ</label>
+                    <select class="form-control" name="user_teacher">
+                      <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
+                        <option value="<%=item.user_id%>">
+                          <%=item.user_fname%>
+                            <%=item.user_lname%>
+                        </option>
+                        <%})%>
+                    </select>
+                  </div>
+
                   <!-- <button onclick='add()' >Hi</button> -->
-                  <p id='hits'></p>   
+                  <!-- <p id='hits'></p>    -->
 
                   <div class="col-md-6">
-                    <a style="width: 60px; height: 30px; margin-right: 10px;"  onclick="add()"  role="button" class="btn btn-info">ตกลง</a>
-							      <a style="width: 60px; height: 30px"  href="http://localhost:5001/Home" role="button" class="btn btn-warning">ยกเลิก</a>
+                    <button type="submit" style="width: 60px; height: 30px; margin-right: 10px;"
+                      class="btn btn-info">ตกลง</button>
+                    <a style="width: 60px; height: 30px" href="http://localhost:5001/Cardata" role="button"
+                      class="btn btn-warning">ยกเลิก</a>
                   </div>
-                </main>
-	</div>
+                </form>
+    </main>
+  </div>
 
-	<script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
-    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-<!--
+  <script data-require="angular.js@1.5.8" data-semver="1.5.8"
+    src="https://code.angularjs.org/1.5.8/angular.js"></script>
+  <script data-require="jquery@3.0.0" data-semver="3.0.0"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+  <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
-<!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script>
-		//var app = angular.module("app", [])
-var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
+  <!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+  <!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    //var app = angular.module("app", [])
+    var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
 
 
-function add(){
+  </script>
 
-  var ipcarreg = document.getElementById('ipcarreg').value
-  var ipcarno = document.getElementById('ipcarno').value
-  var ipcarseat = document.getElementById('ipcarseat').value
-  var ipdriver = document.getElementById('ipdriver').value
-  var ipteacher = document.getElementById('ipteacher').value
-  data = {
-    'ipcarred':ipcarreg,
-    'ipcarno':ipcarno,
-    'ipcarseat':ipcarseat,
-    'ipdriver':ipdriver,
-    'ipteacher':ipteacher
-  };
-
-
-  console.log(data);
-}
-
-	</script>
-  
 </body>
+
 </html>

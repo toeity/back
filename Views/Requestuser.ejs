@@ -24,7 +24,8 @@
 					<a href="http://localhost:5001/Requestuser" ><ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
 					<a href="http://localhost:5001/Authuser" ><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</a>
                     <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
-                    <a href="http://localhost:5001/Login" ><ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
+					<a href="http://localhost:5001/Leaveinfo"><ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา </a>
+					<a onclick="logout()"> <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
 				
 				</li>
 				
@@ -42,17 +43,7 @@
 				<label for="filter">ค้นหา</label>
 				<input ng-model="fdata.$" class="form-control" type="text" name="pname" id="pname" placeholder="ค้นหา" />
 			</div>
-			<div class="col-md-2">
-			<label for="status">สิทธิผู้ใช้</label>
-				<select ng-model="fdata1" class="form-control" name="auth" id="auth">
-					<option value="" selected>ทั้งหมด</option>
-					<option value="1">ผู้ปกครอง</option>
-					<option value="2">ครู</option>
-					<option value="3">คนขับรถ</option>
-					<option value="4">ผู้บริหาร</option>
-					<option value="5">แอดมิน</option>
-				</select>
-			</div>
+			
 			
 		</div>
 		<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->

@@ -23,8 +23,9 @@
             <a href="http://localhost:5001/Home" ><ion-icon name="home-outline" class="icon"></ion-icon>dashboard</a>
             <a href="http://localhost:5001/Requestuser" ><ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
             <a href="http://localhost:5001/Authuser" ><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</a>
-                      <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
-                      <a href="http://localhost:5001/Login" ><ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
+            <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
+            <a href="http://localhost:5001/Leaveinfo"><ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา </a>
+            <a onclick="logout()"> <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
           
           </li>
           
@@ -61,17 +62,28 @@
         <div class="col-md-12">
           <!-- ยังไม่ได้connectionกับสิทธิผู้ใช้ -->
           <label for="typeuser" >สิทธิผู้ใช้</label>
+          <select class="form-control col-md-4" name="auth" id="inputauthid" style="margin-bottom: 30px;"  autocomplete=off>
+            <option value="1">ผู้ปกครอง</option> 
+            <option value="2">ครู</option> 
+            <option value="3">คนขับรถ</option>
+            <option value="4">ผู้บริหาร</option>
+            <option value="5">แอดมิน</option>
+          </select>
+        </div>
+          <!-- <label for="typeuser" >สิทธิผู้ใช้</label>
             <select ng-model="fdata1" class="form-control col-md-4" name="auth" id="auth" style="margin-bottom: 30px;" >
+              <option value="1">ผู้ปกครอง</option>
               <option value="2">ครู</option>
               <option value="3">คนขับรถ</option>
               <option value="4">ผู้บริหาร</option>
               <option value="5">แอดมิน</option>
             </select>
-          </div>
+          </div> -->
      
     </form> 
           <div class="col-md-6">
-              <a style="width: 60px; height: 30px; margin-right: 10px;"  href="http://localhost:5001/Authuser" role="button" class="btn btn-info">ตกลง</a>					      <a style="width: 60px; height: 30px"  href="http://localhost:5001/Home" role="button" class="btn btn-warning">ยกเลิก</a>
+              <a style="width: 60px; height: 30px; margin-right: 10px;"  href="http://localhost:5001/Authuser" role="button" class="btn btn-info">ตกลง</a>
+              <a style="width: 60px; height: 30px"  href="http://localhost:5001/Authuser" role="button" class="btn btn-warning">ยกเลิก</a>
           </div>
                 </main>
 	</div>
@@ -96,7 +108,8 @@
 	<script>
 		//var app = angular.module("app", [])
 var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
-
+document.getElementById("inputauthid").selectedIndex = parseInt('<%=result.auth_id%>')-1;
+		//var app = angular.module("app", [])
 //myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
 //initCntrl]);
 

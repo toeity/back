@@ -43,7 +43,15 @@ main {
 	text-align:left;
   color: #fff;
 }
-
+p {
+	margin-bottom: 20px;
+	line-height: 26px;
+}
+p::first-letter {
+	font-size: 200%;
+	font-weight: bold;
+  color: #000;
+}
 li, ul label.title, ul, a {
 	width: 100%;
 	color: #000;
@@ -108,29 +116,98 @@ i {
 	}
 } 
 
-.card-group
+.card
 {   
-    position: f3xed;
-	width: 23%;
-	height: 200px;
-	margin-right: 15px;
-	margin-left: 15px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+    position: fixed;
+	width: 80%;
+	height: 100%;
 	background-color: #ffffff;
-	
+	overflow: auto;
 	padding: 40px;
     border-radius: 20px;
 }
-h3
+h2
 {
  color: #ff9900;
     margin-bottom: 10px;
-	font-weight: bold;
-}
-.num{
-	font-size: 60px;
-	margin-left: 180px;
 }
 
+/* .ui-sortable tr {
+	cursor:pointer;
+} */
+		
+/* .ui-sortable tr:hover {
+	background:rgba(244,251,17,0.45);
+} */
 
+
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+/*estudiar esto .. falla sobre el blanco*/
+  	/* table.hoverTable{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	table.hoverTable td{ 
+		padding:7px; border:#e6bd4c 1px solid;
+	} */
+	/* Define the default color for all the table rows */
+	/* table.hoverTable tr{
+		background: #e4c04c;
+	} */
+	/* Define the hover highlight color for the table row */
+    /* .hoverTable tr:hover {
+          background-color: #ffff99;
+    } */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}
+
+/* label {position:relative} */
+label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#fff;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #fff;
+    position:absolute;
+    pointer-events:none;
+}
+label:before {
+    content:'';
+    right:6px; top:0px;
+}
+  .grid {
+  width: 100%;
+  height: 400px;
+}
+  .myGrid {
+            width: 100%;
+            height: 20rem;
+          }

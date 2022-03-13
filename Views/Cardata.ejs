@@ -6,8 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />  
+	<link rel="stylesheet"
+		href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />
 	<link rel="stylesheet" href="/css/cardata.css" />
 	<title>Cardata Page</title>
 </head>
@@ -16,332 +17,206 @@
 	<div class="container">
 		<nav class="menu">
 			<ul>
-				<div class="logo"><img  src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px; margin:30px 70px 30px"></div>
-				<input class="bar" type="radio"  name="menu" id="archive" checked>
-                
+				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
+						style="width:100px;height:100px; margin:30px 70px 30px"></div>
+				<input class="bar" type="radio" name="menu" id="archive" checked>
+
 				<li>
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-					<a href="http://localhost:5001/Home" ><ion-icon name="home-outline" class="icon"></ion-icon>dashboard</a>
-					<a href="http://localhost:5001/Requestuser" ><ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
-					<a href="http://localhost:5001/Authuser" ><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</a>
-                    <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
-                    <a href="http://localhost:5001/Login" ><ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
-				
+					<a href="http://localhost:5001/Home">
+						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+					</a>
+					<a href="http://localhost:5001/Requestuser">
+						<ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+					</a>
+					<a href="http://localhost:5001/Authuser">
+						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+					</a>
+					<a href="http://localhost:5001/Cardata">
+						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+					</a>
+					<a href="http://localhost:5001/Leaveinfo">
+						<ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
+					</a>
+					<a onclick="logout()">
+						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+					</a>
+
 				</li>
-				
+
 			</ul>
 		</nav>
 		<main class="main">
 			<div class="card">
-				<h2><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</h2>
-			
+				<h2>
+					<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+				</h2>
 
-<div ng-app="app" style="padding:15px;">
-	<div ng-controller="MainController">
-		<div class="row form-group">
-			<div class="col-md-6">
-				<label for="filter">ค้นหาจากทะเบียนรถ</label>
-				<input ng-model="fdata.car_reg" class="form-control" type="text" name="pname" id="pname" placeholder="ทะเบียนรถ" />
-			</div>
-			<div class="col-md-2">
-				<label for="filter">หมายเลขรถ</label>
-				<input ng-model="fdata.car_no" class="form-control" type="text" name="code" id="car_id" placeholder="หมายเลขรถ" />
-			</div>
-			
-		</div>
-		<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->
-		<table class="table hoverTable table-condensed table-striped" id="diagnosis_list">
-			<tr>
-      
-        
-				<th>ทะเบียนรถ</th>
-				<th>หมายเลขรถ</th>
-				<th>จำนวนที่นั่ง</th>
-				<th>คนขับรถ</th>
-				<th>ครูประจำรถ</th>
-				<th>จัดการ</th>
-			</tr>
-			<tr ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
-				<td>{{ property.car_reg }}</td>
-				<td>{{ property.car_no }}</td>
-				<td>{{ property.car_seat }}</td>
-				<td>{{ property.driver.user_fname || "-"}} {{property.driver.user_lname}}</td>
-				<td>{{ property.teacher.user_fname || "-"}} {{property.teacher.user_fname}}</td>
-				<!-- <td>{{ property.user_fname " " property.user_lname }}</td>
+
+				<div ng-app="app" style="padding:15px;">
+					<div ng-controller="MainController">
+						<div class="row form-group">
+
+							<div class="col-md-3">
+								<label for="filter">ค้นหา</label>
+								<input ng-model="fdata.$" class="form-control" type="text" name="pname" id="pname"
+									placeholder="ค้นหา" />
+							</div>
+							<div class="col-md-2">
+								<label for="filter">ทะเบียนรถ</label>
+								<input ng-model="fdata.car_reg" class="form-control" type="text" name="pname" id="pname"
+									placeholder="ทะเบียนรถ" />
+							</div>
+							<div class="col-md-2">
+								<label for="filter">หมายเลขรถ</label>
+								<input ng-model="fdata.car_no" class="form-control" type="text" name="code" id="car_no"
+									placeholder="หมายเลขรถ" />
+							</div>
+
+							<div>
+								<a style="width: 80px; height: 32px; margin-top: 25px;"
+									href="http://localhost:5001/Addcar" role="button" class="btn btn-primary">
+									<ion-icon name="add-circle-outline" class="icon"></ion-icon>เพิ่ม
+								</a>
+							</div>
+
+						</div>
+						<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->
+						<table class="table hoverTable table-condensed table-striped" id="diagnosis_list">
+							<tr>
+
+
+								<th>ทะเบียนรถ</th>
+								<th>หมายเลขรถ</th>
+								<th>จำนวนที่นั่ง</th>
+								<th>คนขับรถ</th>
+								<th>ครูประจำรถ</th>
+								<th>จัดการ</th>
+							</tr>
+							<tr
+								ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
+								<td>{{ property.car_reg }}</td>
+								<td>{{ property.car_no }}</td>
+								<td>{{ property.car_seat }}</td>
+								<td>{{ property.driver.user_fname || "-"}} {{property.driver.user_lname}}</td>
+								<td>{{ property.teacher.user_fname || "-"}} {{property.teacher.user_fname}}</td>
+								<!-- <td>{{ property.user_fname " " property.user_lname }}</td>
 				<td>{{ property.car_no }}</td> -->
-				
-                        <td>
-							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Viewcar/{{property.car_no}}" role="button" class="btn btn-info"><ion-icon name="eye-outline"></ion-icon></a>
-							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Editcar/{{property.car_no}}" role="button" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
-							<a style="width: 40px; height: 30px"  href="http://localhost:5001/Login" role="button" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></a>
-							
-						</td>
-			</tr> 
-		</table>
-		
-		<a style="width: 80px; height: 30px"  href="http://localhost:5001/Addcar" role="button" class="btn btn-primary"><ion-icon name="add-circle-outline"  class="icon"></ion-icon>เพิ่ม</a>
+
+								<td>
+									<a style="width: 40px; height: 30px"
+										href="http://localhost:5001/Viewcar/{{property.car_no}}" role="button"
+										class="btn btn-info">
+										<ion-icon name="eye-outline"></ion-icon>
+									</a>
+									<a style="width: 40px; height: 30px"
+										href="http://localhost:5001/Editcar/{{property.car_no}}" role="button"
+										class="btn btn-warning">
+										<ion-icon name="create-outline"></ion-icon>
+									</a>
+									<a style="width: 40px; height: 30px" ng-click="deleteCar(property.car_no)"
+										role="button" class="btn btn-danger">
+										<ion-icon name="trash-outline"></ion-icon>
+									</a>
+									<form hidden="true" action="/delete-car" method="POST"
+										id="del-{{property.car_no}}">
+										<input type="submit" />
+										<input type="hidden" name="car_no" value="{{property.car_no}}" />
+									</form>
+								</td>
+								</td>
+							</tr>
+						</table>
+
+						<!-- <a style="width: 80px; height: 30px"  href="http://localhost:5001/Addcar" role="button" class="btn btn-primary"><ion-icon name="add-circle-outline"  class="icon"></ion-icon>เพิ่ม</a> -->
 		</main>
 	</div>
-
-	<script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
-    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-<!--
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script data-require="angular.js@1.5.8" data-semver="1.5.8"
+		src="https://code.angularjs.org/1.5.8/angular.js"></script>
+	<script data-require="jquery@3.0.0" data-semver="3.0.0"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+	<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
-<!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+	<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+	<!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
+	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script>
 		//var app = angular.module("app", [])
-var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
+		var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
 
-//myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
-//initCntrl]);
+		//myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
+		//initCntrl]);
 
-app.controller("MainController", ['$scope', function($scope) {
-	
-	$scope.limit = 25;
-	$scope.column = 'car_no';
-	$scope.reverseSort = false;
-	$scope.sortClass = "text-primary";
-	
-	$scope.sortColumn = function(column) {
-		$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
-		$scope.column = column;
-	};
-	
-	let result = JSON.parse('<%=result%>'.replaceAll("&#34;","\""));
-	$scope.properties = result
-}]);
+		app.controller("MainController", ['$scope', function ($scope) {
 
+			$scope.limit = 25;
+			$scope.column = 'car_no';
+			$scope.reverseSort = false;
+			$scope.sortClass = "text-primary";
+			$scope.deleteCar = function (car_no) {
+				Swal.fire({
+					title: 'ยืนยันการลบข้อมูลรถ',
+					icon: 'warning',
+					showCancelButton: true,
+				}).then((result) => {
 
-//app.controller("MainController", ['$scope', function($scope) {
-app.controller("MoveCtrl", ['$scope', function($scope) {
-	 $scope.moveItem = function(items, from, to) {
+					if (result.isConfirmed) {
+						document.getElementById(`del-${car_no}`).submit();
+					}
+				})
+			}
+			$scope.sortColumn = function (column) {
+				$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
+				$scope.column = column;
+			};
 
-        console.log('Move items: ' + items + ' From: ' + from + ' To: ' + to);
-        //Here from is returned as blank and to as undefined
-
-        items.forEach(function(item) {
-          var car_idx = from.indexOf(item);
-          if (car_idx != -1) {
-              from.splice(car_idx, 1);
-              to.push(item);      
-          }
-        });
-    };
-    $scope.moveAll = function(from, to) {
-
-        console.log('Move all  From:: '+from+' To:: '+to);
-        //Here from is returned as blank and to as undefined
-
-        angular.forEach(from, function(item) {
-            to.push(item);
-        });
-        from.length = 0;
-    };                
-
-    $scope.selectedclients = [];                                
-
-    // $scope.availableclients = [
-    //   {
-    //     id: 1, 
-    //     name: 'foo'
-    //   }, 
-    //   {
-    //     id: 2, 
-    //     name: 'bar'
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'baz'
-    //   }
-    // ];
-	
-	}]);
-// app.controller("MainCtrl", ['$scope', '$timeout', function($scope , $timeout) {
-//     var vm = this;
-//     vm.gridOptions = {
-//       enableRowSelection: false,
-//       enableSelectAll: false,
-//       showGridFooter:true,
-//       data: [{productName: "Moroni", unitPrice: 50},
-//              {productName: "Tiancum", unitPrice: 43},
-//              {productName: "Jacob", unitPrice: 27},
-//              {productName: "Nephi", unitPrice: 29},
-//              {productName: "Enos", unitPrice: 34}]
-//     };
-//     vm.gridOptions.columnDefs = [
-//         { name: 'productName' },
-//         { name: 'unitPrice' }
-//     ];
-//     vm.gridOptions.multiSelect = false;
-//     vm.getSelectedRows = function () {
-//         vm.mySelectedRows = vm.gridApi.selection.getSelectedRows();
-//     }
-//     vm.getProductList = function() {
-//       vm.gridOptions.data = vm.resultSimulatedData;
-//       vm.mySelectedRows = vm.gridApi.selection.getSelectedRows(); //<--Property undefined error here
-//       if (vm.mySelectedRows[0]) {
-//         alert('Selected Row: ' + vm.mySelectedRows[0].productName + ', ' + vm.mySelectedRows[0].unitPrice + '.');
-//       } else {
-//         alert('Select a row first');
-//       }
-//       $timeout(function() {
-//           if (vm.gridApi.selection.selectedRow) {
-//               vm.gridApi.selection.selectRow(vm.gridOptions.data[0]);
-//           }
-//       });
-//     };
-//     vm.gridOptions.onRegisterApi = function(gridApi) {
-//       vm.gridApi = gridApi;
-//     };
-//     vm.resultSimulatedData = [{productName: "Moroni1", unitPrice: 50},
-//                                {productName: "Tiancum1", unitPrice: 43},
-//                                {productName: "Jacob1", unitPrice: 27},
-//                                {productName: "Nephi1", unitPrice: 29},
-//                                {productName: "Enos1", unitPrice: 34}];
-//     return vm;
-//   }]);
-
-// $(document).ready(function() {
-//     //Helper function to keep table row from collapsing when being sorted
-// 	var fixHelperModified = function(e, tr) {
-// 		var $originals = tr.children();
-// 		var $helper = tr.clone();
-// 		$helper.children().each(function(index)
-// 		{
-// 		  $(this).width($originals.eq(index).width())
-// 		});
-// 		return $helper;
-// 	};
-
-// 	//Make diagnosis table sortable
-// 	$("#diagnosis_list tbody").sortable({
-//     	helper: fixHelperModified,
-// 		stop: function(event,ui) {renumber_table('#diagnosis_list')}
-// 	}).disableSelection();
+			let result = JSON.parse('<%=result%>'.replaceAll("&#34;", "\""));
+			$scope.properties = result
+		}]);
 
 
-// 	//Delete button in table rows
-// 	// $('table').on('click','.btn-delete',function() {
-// 	// 	tableID = '#' + $(this).closest('table').attr('id');
-// 	// 	r = confirm('Delete this item?');
-// 	// 	if(r) {
-// 	// 		$(this).closest('tr').remove();
-// 	// 		renumber_table(tableID);
-// 	// 		}
-// 	// });
+		//app.controller("MainController", ['$scope', function($scope) {
+		app.controller("MoveCtrl", ['$scope', function ($scope) {
+			$scope.moveItem = function (items, from, to) {
 
-// });
+				console.log('Move items: ' + items + ' From: ' + from + ' To: ' + to);
+				//Here from is returned as blank and to as undefined
 
-// //Renumber table rows
-// function renumber_table(tableID) {
-// 	$(tableID + " tr").each(function() {
-// 		count = $(this).parent().children().index($(this)) + 1;
-// 		$(this).find('.priority').html(count);
-// 	});
-// }
+				items.forEach(function (item) {
+					var car_nox = from.indexOf(item);
+					if (car_nox != -1) {
+						from.splice(car_nox, 1);
+						to.push(item);
+					}
+				});
+			};
+			$scope.moveAll = function (from, to) {
 
+				console.log('Move all  From:: ' + from + ' To:: ' + to);
+				//Here from is returned as blank and to as undefined
 
-// // $(function(){
-// //     $('.table').on('click', 'tr', function(e){
-// //             var $tr = $(this);
-// //             var $table = $tr.closest('.table');
-// //             var our_index = $($tr,$table).index();
-// //             if (e.shiftKey) {
-// //                 var last_index = $table.data('last-index');
-// //                 if (last_index) {
-// //                     if (last_index < our_index) {
-// //                         while(last_index < our_index) {
-// //                             $('tbody tr:eq('+(++last_index)+')', $table).click();
-// //                         }   
-// //                         $('tbody tr:eq('+(last_index)+')', $table).click();
-// //                     } else {  
-// //                         while(last_index > our_index) {
-// //                             $('tbody tr:eq('+(--last_index)+')', $table).click();
-// //                         }
-// //                         $('tbody tr:eq('+(last_index)+')', $table).click();
-// //                     } 
-// //                 }
-// //                 $table.data('last-index',our_index);
-// //             } else {
-// //                 $table.data('last-index',our_index);
-// //             }
-            
-// //             if ($tr.hasClass('success')) {
-// //                 $tr.removeClass('success');
-// //             } else {
-// //                 $tr.addClass('success');
-// //             }
-// //     });
-// // });
+				angular.forEach(from, function (item) {
+					to.push(item);
+				});
+				from.length = 0;
+			};
 
+			$scope.selectedclients = [];
 
-
-// //  $(".selectCheck").click(function() {
-// //  if($(this).prop("checked") == true){
-// // 	$("#clonedData").append($(this).parent().parent().clone());
-// //   $("#clonedData").find(".removeIt").remove();
-// //  }else{
-// //  	 var rowCheck = $(this).parent().parent().clone();
-// //    rowCheck.children(".removeIt").remove();
-// //    $('#clonedData tr').each(function(){
-// //      if(rowCheck.html()==$(this).html()){
-// //      	$(this).remove();
-// //      } 
-// //    });
-// //  }
-// // });
-  
-// $("#appendToTable").click(function() {
-// 	$("#printTable").append($("#clonedData").children().clone());
-//   $("#clonedData").html('');
-// });
-
-// // Code goes here
-// var workdata = {};
-// workdata.items = [{
-//   'ITEMNO': '10',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '20',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '30',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '40',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '50',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '60',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '70',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '80',
-//   'SERIALN_REQ': 'X',
-// }];
-
-// //myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
-// //initCntrl]);
-
-// //app.controller("MainController", ['$scope', function($scope) {
-
+		}]);
 
 	</script>
 </body>
+
 </html>

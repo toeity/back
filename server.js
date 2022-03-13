@@ -4,12 +4,29 @@ const cors = require('cors');
 const { config } = require('./Configs/server.config');
 const db = require('./Database/DB');
 const admin = require('firebase-admin');
+const sessions = require('express-session');
+const flash = require('connect-flash');
 var serviceAccount = require("./project-firebase.json");
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const app = express();
 app.use(cors());
-
-
+app.use(sessions(
+    {
+        secret:'iamgroot',
+        resave:false,
+        saveUninitialized:true,
+        cookie:{
+           
+        }
+    }
+));
+app.use(cookieParser())
+app.use((req, res, next) => {
+    res.locals.message = req.session.message
+    delete req.session.message;
+    next();
+})
 //For Websites
 app.use(express.static(path.join(__dirname,"./Public")))
 app.set('view engine', 'ejs');

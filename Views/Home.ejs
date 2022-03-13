@@ -33,6 +33,9 @@
 					<a href="http://localhost:5001/Cardata">
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
+					<a href="http://localhost:5001/Leaveinfo">
+						<ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
+					</a>
 					<a onclick="logout()">
 						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
 					</a>
@@ -43,60 +46,78 @@
 		</nav>
 		<main class="main">
 			<div class="row">
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
 					<h3>
 						จำนวนเด็ก <ion-icon name="happy-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
 						<p class="num">
-
+							<%=result.student%>
 						</p>
 					</div>
 				</div>
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
+					<h3>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="icon"></ion-icon>
+					</h3>
+					<div>
+						<p class="num">
+							<%=result.user[0].authCount%>
+						</p>
+					</div>
+				</div>
+				<div class="card-group col-md-3">
 					<h3>จำนวนครูประจำรถ <ion-icon name="person-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
 						<p class="num">
-
+							<%=result.user[1].authCount%>
 						</p>
 					</div>
 				</div>
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
 					<h3>จำนวนคนขับรถ <ion-icon name="person-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
 						<p class="num">
-
+							<%=result.user[2].authCount%>
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
 					<h3>จำนวนผู้บริหาร <ion-icon name="person-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
 						<p class="num">
-
+							<%=result.user[3].authCount%>
 						</p>
 					</div>
 				</div>
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
+					<h3>จำนวนแอดมิน <ion-icon name="person-outline" class="icon"></ion-icon>
+					</h3>
+					<div>
+						<p class="num">
+							<%=result.user[4].authCount%>
+						</p>
+					</div>
+				</div>
+				<div class="card-group col-md-3">
 					<h3>จำนวนรถ <ion-icon name="car-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
 						<p class="num">
-
+							<%=result.car.carCount%>
 						</p>
 					</div>
 				</div>
-				<div class="card-group col-md-4">
+				<div class="card-group col-md-3">
 					<h3>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="icon"></ion-icon>
 					</h3>
 					<div>
-						<p class="num">
-
+						<p class="num" id="userall">
+							<%=result.userAll%>
 						</p>
 					</div>
 				</div>
