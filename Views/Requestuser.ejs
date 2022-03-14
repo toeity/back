@@ -49,7 +49,7 @@
 		<!-- Data List .. ojo .. <table class="table gridtable table-condensed table-striped"> -->
 		<table class="table hoverTable table-condensed table-striped" id="diagnosis_list">
 			<tr>
-				<th>รหัสผู้ใช้</th>
+				
 				<th>อีเมล์</th>
 				<th>ชื่อ</th>
 				<th>นามสกุล</th>
@@ -61,7 +61,7 @@
 			<tr ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
 				<!-- 	ต้องโชว์แค่ authที่1 ผู้ปกครอง -->
 				{{console.log(property)}}
-                <td>{{ property.user_id }}</td> 
+                
 				<td>{{ property.user_email }}</td>
 				<td>{{ property.user_fname }}</td>
 				<td>{{ property.user_lname }}</td>
@@ -82,6 +82,13 @@
 </td>
 			</tr>
 		</table>
+		<ul id="pagination">
+							
+			<nav class="flex flex-row flex-nowrap justify-between ">
+		<li ng-repeat="(key,value) in range" ng-click="paginate(key)" ng-class="{active:page===key}"><a href="#">{{key+1}}</a></li>
+			</nav>
+		
+	</ul>
     
     <!-- <button style="width: 50px; height: 30px" id="appendToTable">เพิ่ม</button> -->
 
@@ -92,7 +99,8 @@
     <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
 <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 <!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -114,18 +122,28 @@ var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selec
 
 app.controller("MainController", ['$scope', function($scope) {
 	
-	$scope.limit = 25;
+	$scope.limit = 10;
 	$scope.column = 'user_id';
+	$scope.page = 0;
 	$scope.reverseSort = false;
 	$scope.sortClass = "text-primary";
-	
+
+	$scope.paginate = function (page) {
+				$scope.page = page;
+				console.log($scope.page, page);
+				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
+			}
 	$scope.sortColumn = function(column) {
 		$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
 		$scope.column = column;
 	};
 	
 	let result = JSON.parse('<%=result%>'.replaceAll("&#34;","\""));
-	$scope.properties = result
+	let i = 0;
+			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
+			console.log($scope.length);
+			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
+		
 }]);
 
 
@@ -157,196 +175,11 @@ app.controller("MoveCtrl", ['$scope', function($scope) {
 
     $scope.selectedclients = [];                                
 
-    // $scope.availableclients = [
-    //   {
-    //     id: 1, 
-    //     name: 'foo'
-    //   }, 
-    //   {
-    //     id: 2, 
-    //     name: 'bar'
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'baz'
-    //   }
-    // ];
-	
 	}]);
-// app.controller("MainCtrl", ['$scope', '$timeout', function($scope , $timeout) {
-//     var vm = this;
-//     vm.gridOptions = {
-//       enableRowSelection: false,
-//       enableSelectAll: false,
-//       showGridFooter:true,
-//       data: [{productName: "Moroni", unitPrice: 50},
-//              {productName: "Tiancum", unitPrice: 43},
-//              {productName: "Jacob", unitPrice: 27},
-//              {productName: "Nephi", unitPrice: 29},
-//              {productName: "Enos", unitPrice: 34}]
-//     };
-//     vm.gridOptions.columnDefs = [
-//         { name: 'productName' },
-//         { name: 'unitPrice' }
-//     ];
-//     vm.gridOptions.multiSelect = false;
-//     vm.getSelectedRows = function () {
-//         vm.mySelectedRows = vm.gridApi.selection.getSelectedRows();
-//     }
-//     vm.getProductList = function() {
-//       vm.gridOptions.data = vm.resultSimulatedData;
-//       vm.mySelectedRows = vm.gridApi.selection.getSelectedRows(); //<--Property undefined error here
-//       if (vm.mySelectedRows[0]) {
-//         alert('Selected Row: ' + vm.mySelectedRows[0].productName + ', ' + vm.mySelectedRows[0].unitPrice + '.');
-//       } else {
-//         alert('Select a row first');
-//       }
-//       $timeout(function() {
-//           if (vm.gridApi.selection.selectedRow) {
-//               vm.gridApi.selection.selectRow(vm.gridOptions.data[0]);
-//           }
-//       });
-//     };
-//     vm.gridOptions.onRegisterApi = function(gridApi) {
-//       vm.gridApi = gridApi;
-//     };
-//     vm.resultSimulatedData = [{productName: "Moroni1", unitPrice: 50},
-//                                {productName: "Tiancum1", unitPrice: 43},
-//                                {productName: "Jacob1", unitPrice: 27},
-//                                {productName: "Nephi1", unitPrice: 29},
-//                                {productName: "Enos1", unitPrice: 34}];
-//     return vm;
-//   }]);
-
-// $(document).ready(function() {
-//     //Helper function to keep table row from collapsing when being sorted
-// 	var fixHelperModified = function(e, tr) {
-// 		var $originals = tr.children();
-// 		var $helper = tr.clone();
-// 		$helper.children().each(function(index)
-// 		{
-// 		  $(this).width($originals.eq(index).width())
-// 		});
-// 		return $helper;
-// 	};
-
-// 	//Make diagnosis table sortable
-// 	$("#diagnosis_list tbody").sortable({
-//     	helper: fixHelperModified,
-// 		stop: function(event,ui) {renumber_table('#diagnosis_list')}
-// 	}).disableSelection();
-
-
-// 	//Delete button in table rows
-// 	// $('table').on('click','.btn-delete',function() {
-// 	// 	tableID = '#' + $(this).closest('table').attr('id');
-// 	// 	r = confirm('Delete this item?');
-// 	// 	if(r) {
-// 	// 		$(this).closest('tr').remove();
-// 	// 		renumber_table(tableID);
-// 	// 		}
-// 	// });
-
-// });
-
-// //Renumber table rows
-// function renumber_table(tableID) {
-// 	$(tableID + " tr").each(function() {
-// 		count = $(this).parent().children().index($(this)) + 1;
-// 		$(this).find('.priority').html(count);
-// 	});
-// }
-
-
-// // $(function(){
-// //     $('.table').on('click', 'tr', function(e){
-// //             var $tr = $(this);
-// //             var $table = $tr.closest('.table');
-// //             var our_index = $($tr,$table).index();
-// //             if (e.shiftKey) {
-// //                 var last_index = $table.data('last-index');
-// //                 if (last_index) {
-// //                     if (last_index < our_index) {
-// //                         while(last_index < our_index) {
-// //                             $('tbody tr:eq('+(++last_index)+')', $table).click();
-// //                         }   
-// //                         $('tbody tr:eq('+(last_index)+')', $table).click();
-// //                     } else {  
-// //                         while(last_index > our_index) {
-// //                             $('tbody tr:eq('+(--last_index)+')', $table).click();
-// //                         }
-// //                         $('tbody tr:eq('+(last_index)+')', $table).click();
-// //                     } 
-// //                 }
-// //                 $table.data('last-index',our_index);
-// //             } else {
-// //                 $table.data('last-index',our_index);
-// //             }
-            
-// //             if ($tr.hasClass('success')) {
-// //                 $tr.removeClass('success');
-// //             } else {
-// //                 $tr.addClass('success');
-// //             }
-// //     });
-// // });
-
-
-
-// //  $(".selectCheck").click(function() {
-// //  if($(this).prop("checked") == true){
-// // 	$("#clonedData").append($(this).parent().parent().clone());
-// //   $("#clonedData").find(".removeIt").remove();
-// //  }else{
-// //  	 var rowCheck = $(this).parent().parent().clone();
-// //    rowCheck.children(".removeIt").remove();
-// //    $('#clonedData tr').each(function(){
-// //      if(rowCheck.html()==$(this).html()){
-// //      	$(this).remove();
-// //      } 
-// //    });
-// //  }
-// // });
-  
-// $("#appendToTable").click(function() {
-// 	$("#printTable").append($("#clonedData").children().clone());
-//   $("#clonedData").html('');
-// });
-
-// // Code goes here
-// var workdata = {};
-// workdata.items = [{
-//   'ITEMNO': '10',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '20',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '30',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '40',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '50',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '60',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '70',
-//   'SERIALN_REQ': 'X',
-// }, {
-//   'ITEMNO': '80',
-//   'SERIALN_REQ': 'X',
-// }];
-
-// //myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
-// //initCntrl]);
-
-// //app.controller("MainController", ['$scope', function($scope) {
-
-
 	</script>
+	 <script src="/js/auth.js"></script>
+	 <script>
+		 hasLogin();
+	 </script> 
 </body>
 </html>

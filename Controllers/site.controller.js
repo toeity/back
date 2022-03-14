@@ -3,10 +3,11 @@ const User = require("../Models/User");
 const Auth = require("../Models/Auth");
 const Student = require("../Models/Student");
 const { Op, and , fn} = require("sequelize")
+const bcrypt = require("bcryptjs");
 
 exports.LoginPage = function (req, res) {
     return res.render('Login');
-}
+} 
 
 exports.RegisterPage = function (req, res) {
     return res.render("Register")
@@ -50,15 +51,7 @@ exports.HomePage = function (req, res,next) {
         })
     })
 }
-exports.DeleteUserAction = function (req, res) {
-    try {
-        User.destroy({ where: { user_id: req.body.user_id } }).then(() => {
-            res.redirect('/Authuser')
-        })
-    } catch (err) {
-        next(err)
-    }
-}
+
 exports.LeaveinfoPage = function (req, res) {
     User.belongsTo(Auth, { foreignKey: 'auth_id' })
     User.findAll({
@@ -139,7 +132,15 @@ exports.AuthuserPage = function (req, res) {
     })
     // return res.render("Authuser")
 }
-
+exports.DeleteUserAction = function (req, res) {
+    try {
+        User.destroy({ where: { user_id: req.body.user_id } }).then(() => {
+            res.redirect('/Authuser')
+        })
+    } catch (err) {
+        next(err)
+    }
+}
 exports.AdduserPage = function (req, res) {
     User.findAll({ raw: true }).then(function (result) {
         return res.render("Adduser", { result: JSON.stringify({ result }) })
@@ -148,7 +149,7 @@ exports.AdduserPage = function (req, res) {
 }
 
 exports.AddUserAction = function (req, res) {
-    User.create(req.body).then((result) => {
+    User.create({...req.body,user_pass: bcrypt.hashSync(req.body.user_pass, 5)}).then((result) => {
         req.session.message = "user added"
 
         return res.redirect('/Adduser')
@@ -173,9 +174,12 @@ exports.ViewuserPage = function (req, res) {
     // return res.render("Authuser")
 }
 
+
+
 exports.AddcarPage = function (req, res) {
     User.findAll({ raw: true }).then(function (result) {
-        return res.render("Addcar", { result })
+        console.log(result);
+            return res.render("Addcar", { result  })
     })
 }
 
@@ -195,6 +199,7 @@ exports.AddCarAction = async function (req, res) {
         }, {
             where: { user_id: req.body.user_driver }
         })
+
         return res.redirect('/Addcar')
     } catch (e) {
         console.log(e)

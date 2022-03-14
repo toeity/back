@@ -99,7 +99,7 @@
 								<td>{{ property.car_no }}</td>
 								<td>{{ property.car_seat }}</td>
 								<td>{{ property.driver.user_fname || "-"}} {{property.driver.user_lname}}</td>
-								<td>{{ property.teacher.user_fname || "-"}} {{property.teacher.user_fname}}</td>
+								<td>{{ property.teacher.user_fname || "-"}} {{property.teacher.user_lname}}</td>
 								<!-- <td>{{ property.user_fname " " property.user_lname }}</td>
 				<td>{{ property.car_no }}</td> -->
 
@@ -127,7 +127,13 @@
 								</td>
 							</tr>
 						</table>
-
+						<ul id="pagination">
+							
+							<nav class="flex flex-row flex-nowrap justify-between ">
+						<li ng-repeat="(key,value) in range" ng-click="paginate(key)" ng-class="{active:page===key}"><a href="#">{{key+1}}</a></li>
+							</nav>
+						
+					</ul>
 						<!-- <a style="width: 80px; height: 30px"  href="http://localhost:5001/Addcar" role="button" class="btn btn-primary"><ion-icon name="add-circle-outline"  class="icon"></ion-icon>เพิ่ม</a> -->
 		</main>
 	</div>
@@ -160,8 +166,9 @@
 
 		app.controller("MainController", ['$scope', function ($scope) {
 
-			$scope.limit = 25;
+			$scope.limit = 5;
 			$scope.column = 'car_no';
+			$scope.page = 0;
 			$scope.reverseSort = false;
 			$scope.sortClass = "text-primary";
 			$scope.deleteCar = function (car_no) {
@@ -172,9 +179,15 @@
 				}).then((result) => {
 
 					if (result.isConfirmed) {
+						Swal.fire('Saved!', '', 'success')
 						document.getElementById(`del-${car_no}`).submit();
 					}
 				})
+			}
+			$scope.paginate = function (page) {
+				$scope.page = page;
+				console.log($scope.page, page);
+				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 5)
 			}
 			$scope.sortColumn = function (column) {
 				$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
@@ -182,7 +195,10 @@
 			};
 
 			let result = JSON.parse('<%=result%>'.replaceAll("&#34;", "\""));
-			$scope.properties = result
+			let i = 0;
+			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
+			console.log($scope.length);
+			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 5)
 		}]);
 
 
@@ -217,6 +233,10 @@
 		}]);
 
 	</script>
+	<script src="/js/auth.js"></script>
+	<script>
+		 hasLogin();
+	</script> 
 </body>
 
 </html>

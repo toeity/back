@@ -25,7 +25,7 @@ exports.register = (req, res) => {
     const userData = {
         auth_id: req.body.auth_id,
         user_email: req.body.user_email,
-        user_pass: bcrypt.hashSync(req.body.user_pass, 10),
+        user_pass: bcrypt.hashSync(req.body.user_pass, 5),
         user_fname: req.body.user_fname,
         user_lname: req.body.user_lname,
         user_tel: req.body.user_tel
