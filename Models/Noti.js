@@ -2,22 +2,21 @@ const Sequelize = require('sequelize');
 const DB = require('../Database/DB');
 
 module.exports = DB.sequelize.define(
-    'event',
+    'noti',
     {
-        event_id:{
+        noti_id:{
             type: Sequelize.INTEGER,
             primaryKey: true,
         },
-        event_name:{
+        noti_static:{
+            type: Sequelize.INTEGER,
+        },
+        noti_time:{
             type: Sequelize.STRING,
         },
-    },
-    {
-        tableName: 'event',
+        
+    }, {
+        tableName: 'noti',
         timestamps:false
     }
     );
-
-
-
-    

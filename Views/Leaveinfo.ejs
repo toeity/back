@@ -44,7 +44,6 @@
 					</a>
 
 				</li>
-
 			</ul>
 		</nav>
 		<main class="main">
@@ -52,8 +51,6 @@
 				<h2>
 					<ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
 				</h2>
-
-
 				<div ng-app="app" style="padding:15px;">
 					<div ng-controller="MainController">
 						<div class="row form-group">
@@ -68,6 +65,15 @@
 									<option value="" selected>ทั้งหมด</option>
 									<option value="2">ครู</option>
 									<option value="3">คนขับรถ</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<label for="status">ข้อมูล</label>
+								<select ng-model="fdata['leaves.leave_user.leave_type']" class="form-control"
+									name="leave_user" id="leave_user">
+									<option value="" selected>ทั้งหมด</option>
+									<option value="0">ยังไม่จัดการ</option>
+									<option value="1">จัดการสำเร็จ</option>
 								</select>
 							</div>
 
@@ -85,25 +91,25 @@
 							</tr>
 							<tr
 								ng-repeat="property in properties | filter: fdata | orderBy:column:reverseSort | limitTo: limit">
-								<!-- 	ต้องโชว์แค่ authที่1 ผู้ปกครอง -->
-								{{console.log(property)}}
-								
+
 								<td>{{ property.user_fname || "-"}} {{property.user_lname}}</td>
 								<td>{{ property.user_tel}}</td>
 								<td>{{ property['auth.auth_name'] || "-"}}</td>
 								<td>{{ property.car_no}}</td>
-								<!-- ยังใช่ไม่ได้ -->
-								<td>{{ property.leave_name}}</td>
-								<td>{{property.leave_day}}</td>
-								<!-- ยังใช่ไม่ได้ -->
-								<td>
-									<a style="width: 40px; height: 30px" href="#" role="button" class="btn btn-success">
+								<td>{{ property['leaves.leave_name']}}</td>
+								<td>{{property['leaves.leave_user.timestamp']}}</td>
+
+								<td ng-if="property['leaves.leave_user.leave_type'] == 0">
+									<a style="width: 40px; height: 30px"
+										href="http://localhost:5001/Leaveedit/{{property.car_no}}" role="button"
+										class="btn btn-success">
 										<ion-icon name="mail-unread-outline"></ion-icon>
 									</a>
-									<a style="width: 40px; height: 30px" href="#" role="button" class="btn btn-danger">
+								</td>
+								<td ng-if="property['leaves.leave_user.leave_type'] == 1">
+									<a style="width: 40px; height: 30px" href="#" role="button" class="btn btn-info">
 										<ion-icon name="mail-open-outline"></ion-icon>
 									</a>
-
 								</td>
 
 							</tr>
@@ -126,9 +132,9 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
 	<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 	<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -144,21 +150,18 @@
 	<script>
 		//var app = angular.module("app", [])
 		var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
-
-		//myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
-		//initCntrl]);
-
 		app.controller("MainController", ['$scope', function ($scope) {
 
-			$scope.limit = 10;
+			$scope.limit = 8;
 			$scope.column = 'user_id';
 			$scope.page = 0;
 			$scope.reverseSort = false;
 			$scope.sortClass = "text-primary";
+
 			$scope.paginate = function (page) {
 				$scope.page = page;
 				console.log($scope.page, page);
-				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
+				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 8)
 			}
 			$scope.sortColumn = function (column) {
 				$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
@@ -167,13 +170,10 @@
 
 			let result = JSON.parse('<%=result%>'.replaceAll("&#34;", "\""));
 			let i = 0;
-			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
-			console.log($scope.length);
-			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
-		
+			$scope.range = Array.from({ length: result.length / 10 + 1 }, () => i++);
+			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 8)
+
 		}]);
-
-
 		//app.controller("MainController", ['$scope', function($scope) {
 		app.controller("MoveCtrl", ['$scope', function ($scope) {
 			$scope.moveItem = function (items, from, to) {
@@ -188,6 +188,7 @@
 						to.push(item);
 					}
 				});
+
 			};
 			$scope.moveAll = function (from, to) {
 
@@ -205,9 +206,10 @@
 		}]);
 	</script>
 	<script src="/js/auth.js"></script>
+
 	<script>
-		 hasLogin();
-	</script> 
+		hasLogin();
+	</script>
 </body>
 
 </html>

@@ -88,6 +88,7 @@
 								<th>อีเมล์</th>
 								<th>ชื่อ</th>
 								<th>นามสกุล</th>
+								<th>หมายเลขรถ</th>
 								<th>ประเภทผู้ใช้</th>
 								<th>จัดการ</th>
 
@@ -98,6 +99,7 @@
 								<td>{{ property.user_email }}</td>
 								<td>{{ property.user_fname }}</td>
 								<td>{{ property.user_lname }}</td>
+								<td>{{ property.car_no }}</td>
 								<td>{{ property['auth.auth_name'] || "-"}}</td>
 								<td>
 									<a style="width: 40px; height: 30px"
@@ -164,7 +166,7 @@
 
 		app.controller("MainController", ['$scope', function ($scope) {
 
-			$scope.limit = 10;
+			$scope.limit = 8;
 			$scope.column = 'user_id';
 			$scope.page = 0;
 			$scope.reverseSort = false;
@@ -185,7 +187,7 @@
 			$scope.paginate = function (page) {
 				$scope.page = page;
 				console.log($scope.page, page);
-				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
+				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 8)
 			}
 			$scope.sortColumn = function (column) {
 				$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
@@ -196,7 +198,7 @@
 			let i = 0;
 			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
 			console.log($scope.length);
-			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
+			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 8)
 		}]);
 
 

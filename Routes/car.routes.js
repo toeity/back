@@ -11,8 +11,13 @@ module.exports = function(app){
     app.post(
         '/api/car',
         controller.addCar
-    );
+    ); 
+    app.get('/api/car',controller.getAllCarBoss)
 
-    app.get('/api/car',controller.getAllCar)
+    app.get('/api/car/:car_no',controller.getAllCar)
+    
+    app.get(
+        '/api/car_user/:car_no',
+        controller.getCarUser);
     
 }

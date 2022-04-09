@@ -71,6 +71,7 @@
                   <div class="form-group col-md-12">
                     <label for="inputPassword4">คนขับรถ</label>
                     <select class="form-control" name="user_driver" id="user_driver">
+                      <option disabled selected value>กรุณาเลือก</option>
                       <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
                         <option value="<%=item.user_id%>">
                           <%=item.user_fname%>
@@ -82,6 +83,7 @@
                   <div class="form-group col-md-12">
                     <label for="inputAddress">ครูประจำรถ</label>
                     <select class="form-control" name="user_teacher" id="user_teacher">
+                      <option disabled selected value>กรุณาเลือก</option>
                       <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
                         <option value="<%=item.user_id%>">
                           <%=item.user_fname%>

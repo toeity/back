@@ -1,5 +1,8 @@
 const config = require('../Configs/auth.config');
 const User = require('../Models/User');
+const Car = require('../Models/Car')
+const Student = require('../Models/Student')
+const {fn} = require('sequelize')
 const jwt = require('jsonwebToken');
 const bcrypt = require("bcryptjs");
 const Auth = require('../Models/Auth');
@@ -17,8 +20,6 @@ exports.addAuth = (req, res) => {
         })
     })
 }
-
-
 
 exports.register = (req, res) => {
     const emailRegexp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -62,13 +63,12 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    console.log(`user`, req.body.user_email);
     User.findOne({
         where: {
             user_email: req.body.user_email,
         },
     })
-        .then((user) => {
+        .then(async (user) => {
             if (!user) {
                 return res.status(404).send({ massage: "User not found." });
             }
@@ -81,9 +81,8 @@ exports.login = (req, res) => {
                     message: "Invalid Password!"
                 });
             }
-            var token = jwt.sign({...user.toJSON()}, config.secret, {
-                expiresIn: 86400 //24 hours
-            });
+            await user.update({token:req.body.token})
+            var token = jwt.sign({...user.toJSON()}, config.secret);
             res.status(200).json({
                 accessToken: token,
                 // role: user.auth_id,
@@ -115,4 +114,60 @@ exports.auth = (req, res) => {
 
     }
 
+}
+
+exports.getUserCountAll = function (req, res, next) {
+    console.log('test');
+    User.belongsTo(Auth, { foreignKey: 'auth_id' });
+    Auth.hasMany(User, { foreignKey: 'auth_id' });
+    Car.findAll({
+        attributes: [
+            [fn('count', 'car_reg'), 'carCount']
+        ]
+    }).then((car) => {
+        User.findAll({
+            attributes: [   
+                [fn('count', 'auth_id'), 'authCount'], 'auth_id'
+            ],
+            group: ['auth_id'],
+            order: ['auth_id']
+        }).then((user) => {
+            Student.findAndCountAll().then((std) => {
+                var result = {
+                    car: car[0].dataValues,
+                    student: std.count,
+                    user: [
+                        user[0]?.dataValues,
+                        user[1]?.dataValues,
+                        user[2]?.dataValues,
+                        user[3]?.dataValues,
+                        user[4]?.dataValues,
+                        user[5]?.dataValues,
+                    ],
+                    userAll: 0
+                }
+                result.user.forEach((d, index) => {
+                    result.userAll += d?.authCount??0;
+                })
+                return res.json(result)
+            })
+        })
+    })
+}
+
+exports.editLogOut = (req, res) => {
+    User.findOne({
+        where: {
+            user_id: req.userId,
+        },
+    })
+        .then(async (user) => {
+            console.log(user.user_id +" is logout");
+            await user.update({token:null})
+            return res.json(user)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(500).send({ message: err.message })
+        });
 }

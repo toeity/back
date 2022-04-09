@@ -8,8 +8,8 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />
-  <link rel="stylesheet" href="/css/editcar.css" />
-  <title>Editcar Page</title>
+  <link rel="stylesheet" href="/css/leaveedit.css" />
+  <title>Leaveedit Page</title>
 </head>
 
 <body>
@@ -19,6 +19,7 @@
         <div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
           style="width:100px;height:100px; margin:30px 70px 30px"></div>
           <input class="bar" type="radio" name="menu" id="archive" checked>
+          
           <li>
             <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
             <a href="http://localhost:5001/Home">
@@ -47,24 +48,24 @@
       <main class="main">
         <div class="card">
           <h2>
-          <ion-icon name="create-outline" class="icon"></ion-icon>แก้ไขข้อมูลรถ
+          <ion-icon name="create-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
         </h2>
-        <form method="post" action="/Editcar">
+        <form method="post" action="/Leaveedit">
 
           <div class="form-group col-md-12">
 
             <label for="inputAddress">ทะเบียนรถ</label> <br>
 
-            <input type="text" class="form-control" name="car_reg" id="car_reg" value="<%=cars.car_reg%>">
+            <input type="text" class="form-control" name="car_reg" id="car_reg" value="<%=cars.car_reg%>" disabled>
           </div>
           <div class="form-group col-md-12">
             <label for="inputPassword4">หมายเลขรถ</label>
-            <input type="text" class="form-control" name="car_no" id="car_no" " value=" <%=cars.car_no%>" >
+            <input type="text" class="form-control" name="car_no" id="car_no" " value=" <%=cars.car_no%>" disabled>
           </div>
 
           <div class="form-group col-md-12">
             <label for="inputEmail4">จำนวนที่นั่ง</label>
-            <input type="text" class="form-control" name="car_seat" id="car_seat" value="<%=cars.car_seat%>">
+            <input type="text" class="form-control" name="car_seat" id="car_seat" value="<%=cars.car_seat%>" disabled>
           </div>
           <div class="form-group col-md-12">
                  <label for="inputPassword4">คนขับรถ</label>
@@ -92,10 +93,10 @@
                </div>
 
           <div class="col-md-6">
-            <button type="button" onclick="carEdit()" style="width: 60px; height: 30px; margin-right: 10px;"
+            <button type="button" onclick="Leaveedit()" style="width: 60px; height: 30px; margin-right: 10px;"
               class="btn btn-info">ตกลง</button>
             <input type="submit"  id="form-edit" hidden="true" />
-            <a style="width: 60px; height: 30px" href="http://localhost:5001/Cardata" role="button"
+            <a style="width: 60px; height: 30px" href="http://localhost:5001/Leaveinfo" role="button"
               class="btn btn-warning">ยกเลิก</a>
           </div>
         </form>
@@ -141,7 +142,7 @@
         }
       }
     })
-    function carEdit() {
+    function Leaveedit() {
       let car_no = document.getElementById('car_no').value;
       let car_reg = document.getElementById('car_reg').value;
       let car_seat = document.getElementById('car_seat').value;

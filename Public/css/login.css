@@ -77,7 +77,7 @@ body {
 .right {
   background: #ffffff;
   box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
-  color: #d1d1db;
+  color: #ffffff;
   position: relative;
   width: 50%;
 }
@@ -92,6 +92,7 @@ body {
 svg {
   position: absolute;
   width: 350px;
+  margin-top: 50px;
 }
 path {
   fill: none;
@@ -100,19 +101,24 @@ path {
   stroke-dasharray: 230 1386;
 }
 .form {
-  margin: 40px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   position: absolute;
 }
+
+
 .font
 {
   color: #f78719;
   font-size: 25px;
   font-weight: 700;
   line-height: 1;
-  margin: 30px 30px 0px;
+  margin: 30px 20px 0px;
 }
 label {
-  color:  #c2c2c5;
+  color:  #000000;
   display: block;
   font-size: 14px;
   height: 14px;
@@ -134,12 +140,13 @@ input::-moz-focus-inner {
 }
 #submit {
   color: #707075;
-  margin-top: 30px;
-  transition: color 200ms;
+  margin-top: 50px;
+  margin-left: 0px;
+  transition: color 300ms;
 }
 #submit:focus {
-  color: #f2f2f2;
+  color: #eba729;
 }
 #submit:active {
-  color: #d0d0d2;
+  color: #ffffff;
 }

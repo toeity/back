@@ -1,4 +1,5 @@
 const controller = require('../Controllers/student.controller');
+const { authJwt } = require('../Middleware');
 
 module.exports = function(app){
     app.use(function(req, res, next){
@@ -13,7 +14,9 @@ module.exports = function(app){
         controller.addStudent
     );
 
-
-    app.get('/api/student',controller.getAllStudent)
+    // app.get('/api/student',controller.getAllStudentBoss)
+    app.get('/api/student/:car_no',controller.getAllStudent)
+    app.get('/api/studentByParent/:user_id',controller.studentByParent)
     
+
 }

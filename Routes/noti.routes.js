@@ -1,4 +1,4 @@
-const controller = require('../Controllers/user.controller');
+const controller = require('../Controllers/noti.controller');
 
 module.exports = function(app){
     app.use(function(req, res, next){
@@ -9,11 +9,11 @@ module.exports = function(app){
        next();
     });
     app.post(
-        '/api/user',
-        controller.addUser
+        '/api/noti',
+        controller.addNoti    
     );
 
-
-    app.get('/api/user',controller.getAllUser)
-    
+    app.get('/api/noti/',controller.getAllNoti)
+    app.get('/api/noti/noti_all',controller.getAllNotiCount)
+   
 }

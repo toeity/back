@@ -61,9 +61,12 @@
         <label for="inputAddress">เบอร์โทร</label>      
         <input type="text"  class="form-control" id="inputtel" value="<%=result.user_tel%>" disabled>
       </div>
+      <div class="form-group col-md-6">
+        <label for="inputcarno">หมายเลขรถ</label>      
+        <input type="text"  class="form-control" id="inputcarno" value="<%=result.car_no%>" disabled>
+      </div>
         <div class="col-md-12">
           
-          <!-- ยังไม่ได้connectionกับสิทธิผู้ใช้ -->
           <label for="typeuser" >สิทธิผู้ใช้</label>
             <select class="form-control col-md-4" name="auth" id="inputauthid" style="margin-bottom: 30px;" disabled autocomplete=off>
               <option value="1">ผู้ปกครอง</option> 

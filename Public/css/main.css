@@ -1,18 +1,23 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+
 body {
-	font-family: 'Montserrat', sans-serif; 
+	font-family: 'Montserrat', sans-serif;
 }
+
 .container {
 	width: 100%;
 	height: 100%;
+	margin: 0 auto;
 }
+
 nav {
 	position: fixed;
 	display: flex;
@@ -21,10 +26,12 @@ nav {
 	height: 100%;
 	background-color: #fff;
 }
-.icon{
-  margin-right:10px;
-  width: 20px;
-  height: 20px;
+
+.icon {
+	margin: 0 auto;
+	align-content: center;
+	width: 20px;
+	height: 20px;
 }
 
 main {
@@ -36,44 +43,54 @@ main {
 	overflow: auto;
 	padding: 40px;
 }
+
+
 .txt {
 	font-weight: bold;
 	margin-bottom: 50px;
 	font-size: 35px;
-	text-align:left;
-  color: #fff;
+	text-align: left;
+	color: #fff;
 }
-
-li, ul label.title, ul, a {
+li,
+ul label.title,
+ul,
+a {
 	width: 100%;
 	color: #000;
 	font-family: 'Montserrat', sans-serif;
 	display: block;
 	font-weight: bold;
 }
+
 ul label {
 	height: 30px;
 }
-ul{
-  height: 300px;
+
+ul {
+	height: 300px;
 }
-ul li{
-	height: 35px;
+
+ul li {
+	height: 350px;
 	overflow: hidden;
 	transition: all .3s;
 }
+
 li {
 	display: block;
 	background-color: #fff;
 }
+
 label.title {
 	font-size: 14px;
 	background: linear-gradient(#ff9900, #f78719);
 	padding: 10px 15px;
 	cursor: pointer;
-  transition: all .25s;
+	transition: all .25s;
 }
-a{
+
+a {
 	font-size: 12px;
 	text-decoration: none;
 	color: #000;
@@ -81,56 +98,227 @@ a{
 	padding: 10px 25px;
 	transition: all .25s;
 }
+
 a:hover {
 	background-color: #ff9900;
-  box-shadow: inset 5px 0px 0px 0px #fff;
+	box-shadow: inset 5px 0px 0px 0px #fff;
 }
+
 label:hover {
 	text-shadow: 0px 0px 10px #ff9900;
 }
+
 input[class="bar"] {
 	display: none;
 }
-#edit:checked + li, #archive:checked + li, #tools:checked + li, #preferences:checked + li {
+
+#edit:checked+li,
+#archive:checked+li,
+#tools:checked+li,
+#preferences:checked+li {
 	height: 300px;
 }
+
 i {
 	margin-right: 12px;
 }
-@media screen and (max-width: 600px){
+
+@media only screen and (max-width: 600px) {
+	container {
+		flex-direction: column;
+
+	}
+
 	nav {
 		width: 100%;
 		position: relative;
+
 	}
+
 	main {
 		width: 100%;
 		position: relative;
+		overflow: auto;
 	}
-} 
+}
 
-.card-group
-{   
-    position: f3xed;
-	width: 23%;
-	height: 200px;
-	margin-right: 15px;
-	margin-left: 15px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+@media only screen and (max-width: 480px) {
+	container {
+		flex-direction: column;
+	}
+
+	nav {
+		width: 100%;
+		position: relative;
+		background-color: #0dcaf0;
+	}
+
+	main {
+		width: 100%;
+		position: relative;
+		overflow: auto;
+		background-color: #769739;
+	}
+}
+
+
+.card {
+	position: fixed;
+	width: 80%;
+	height: 100%;
 	background-color: #ffffff;
-	
+	overflow: auto;
 	padding: 40px;
-    border-radius: 20px;
-}
-h3
-{
- color: #ff9900;
-    margin-bottom: 10px;
-	font-weight: bold;
-}
-.num{
-	font-size: 60px;
-	margin-left: 180px;
+	border-radius: 20px;
 }
 
+.card-group {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid pink;
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
 
+.card-groupa {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid rgb(211, 204, 132);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupb {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid rgb(133, 214, 214);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupc {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid rgb(85, 214, 171);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupd {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid rgb(250, 128, 114);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupe {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid rgb(244, 164, 96);
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupf {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid #769739;
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+.card-groupg {
+	width: 100%;
+	height: 160px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	border: 4.5px solid #0dcaf0;
+	background-color: #fff;
+	padding: 50px;
+	border-radius: 20px;
+}
+
+h5 {
+	color: #000;
+	/* margin-bottom: 10px;
+	font-weight: bold; */
+}
+
+.num {
+	font-size: 35px;
+	margin-left: 100px;
+	color: #000;
+}
+#myChart {
+	margin-top: 0px;
+	width: 450px !important;
+	height: 450px !important;
+	font-family: 'Montserrat', sans-serif;
+}
+
+data .labels {
+	font-size: 20px;
+}
+
+.chart-container {
+	margin-top: 0px;
+	height: 280px;
+	width: 280px;
+}
+
+#myChart1 {
+	margin-top: 50px;
+	margin-right: 1px;
+	width: 430px !important;
+	height: 210px !important;
+	font-family: 'Montserrat', sans-serif;
+}
+  /* Fix for IE 8 putting the arrows behind the select element. */
+  
+  
+  /* Dirty fix for Firefox adding padding where it shouldn't. */
+  
+  @-moz-document url-prefix() {
+	.dropdown-select {
+	  padding-left: 6px;
+	}
+  }
+  

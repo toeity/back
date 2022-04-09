@@ -1,4 +1,5 @@
 const controller = require('../Controllers/auth.controller');
+const { verifyToken } = require('../Middleware/authJwt');
 
 module.exports = function (app) {
     app.use(function (req, res, next) {
@@ -13,7 +14,10 @@ module.exports = function (app) {
         controller.login
     );
     app.post('/api/auth/register', controller.register);
-    app.get('/api/auth/',controller.auth)
+    app.get('/api/auth/',controller.auth);
+    app.get('/api/auth/auth_all',controller.getUserCountAll);
+
+    app.get('/api/auth/logout',[verifyToken],controller.editLogOut);
 
 }
 

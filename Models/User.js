@@ -12,6 +12,7 @@ module.exports = DB.sequelize.define(
         },
         user_email:{
             type: Sequelize.STRING,
+            unique: true,
         },
         user_pass:{
             type: Sequelize.STRING,
@@ -31,9 +32,13 @@ module.exports = DB.sequelize.define(
         car_no:{
             type: Sequelize.INTEGER,
         },
+        token:{
+            type: Sequelize.STRING,
+        },
     }
     , {
         tableName: 'user',
         timestamps:false
     }
     );
+

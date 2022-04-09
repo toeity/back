@@ -13,7 +13,7 @@ module.exports = DB.sequelize.define(
             primaryKey: true,
         },
         car_seat: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.INTEGER, 
         },
     },{
         tableName: 'car',

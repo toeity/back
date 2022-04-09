@@ -1,6 +1,6 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300);
-
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet';
 * {
 	margin: 0;
 	padding: 0;
@@ -33,24 +33,20 @@ main {
 	width: 85%;
 	height: 100%;
 	background-color: #ff9900;
-	overflow: auto;
+	overflow:hidden;
 	padding: 40px;
 }
-.txt {
+
+h3 {
 	font-weight: bold;
 	margin-bottom: 50px;
-	font-size: 35px;
+	font-size: 55px;
 	text-align:left;
   color: #fff;
 }
 p {
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	line-height: 26px;
-}
-p::first-letter {
-	font-size: 200%;
-	font-weight: bold;
-  color: #000;
 }
 li, ul label.title, ul, a {
 	width: 100%;
@@ -64,10 +60,11 @@ ul label {
 }
 ul{
   height: 300px;
+
 }
 ul li{
 	height: 35px;
-	overflow: hidden;
+	
 	transition: all .3s;
 }
 li {
@@ -84,7 +81,7 @@ label.title {
 a{
 	font-size: 12px;
 	text-decoration: none;
-	color: #000;
+	color: rgb(0, 0, 0);
 	display: block;
 	padding: 10px 25px;
 	transition: all .25s;
@@ -114,8 +111,7 @@ i {
 		width: 100%;
 		position: relative;
 	}
-} 
-
+}
 .card
 {   
     position: fixed;
@@ -164,7 +160,22 @@ table.gridtable td {
 	background-color: #ffffff;
 }
 
-
+/*estudiar esto .. falla sobre el blanco*/
+  	/* table.hoverTable{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	table.hoverTable td{ 
+		padding:7px; border:#e6bd4c 1px solid;
+	} */
+	/* Define the default color for all the table rows */
+	/* table.hoverTable tr{
+		background: #e4c04c;
+	} */
+	/* Define the hover highlight color for the table row */
+    /* .hoverTable tr:hover {
+          background-color: #ffff99;
+    } */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}
 }
@@ -196,7 +207,8 @@ label:before {
             width: 100%;
             height: 20rem;
           }
-		  
+
+
 		  html, 
 		  body {
 			font: 100%/1.5 Verdana, sans-serif
@@ -204,11 +216,11 @@ label:before {
 		  #wrapper {
 			margin: 0 auto;
 			display: block;
-			width: 300px;
+			width: 960px;
 		  }
 		  .active{		
 			border: 1.5px solid #ff9900; 
-			width: 80px;
+			width: 240px;
 			background-color: #ffffff;
 			padding: 5px 5px ;
    			 border-radius: 5px;

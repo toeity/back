@@ -53,25 +53,49 @@
                             <label for="inputAddress">ทะเบียนรถ</label>  <br>
                            
    
-                            <input type="text"  class="form-control" id="inputtel"  value="<%=result.car_reg%>" disabled>
+                            <input type="text"  class="form-control" id="inputtel"  value="<%=cars.car_reg%>" disabled>
                           </div>
                       <div class="form-group col-md-12">
                         <label for="inputPassword4">หมายเลขรถ</label>
-                        <input type="text" class="form-control" id="inputPassword4" value="<%=result.car_no%>" disabled>
+                        <input type="text" class="form-control" id="inputPassword4" value="<%=cars.car_no%>" disabled>
                       </div>
                     
                     <div class="form-group col-md-12">
                         <label  for="inputEmail4">จำนวนที่นั่ง</label>
-                        <input type="text" class="form-control" id="inputfname" value="<%=result.car_seat%>" disabled>
+                        <input type="text" class="form-control" id="inputfname" value="<%=cars.car_seat%>" disabled>
                       </div>
                       <div class="form-group col-md-12">
                         <label for="inputPassword4">คนขับรถ</label>
-                        <input type="text"  class="form-control" id="inputlname" value="<%=result.driver%>" disabled>
+                        <select class="form-control" name="user_driver" id="user_driver" >
+                          <option disabled selected value>กรุณาเลือก</option>
+                         <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
+                            <option  value="<%=item.user_id%>" disabled <%=driver?.user_id==item.user_id  && 'selected'%> >
+                              <%=item.user_fname%>
+                                <%=item.user_lname%>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputAddress">ครูประจำรถ</label>
+                        <select class="form-control" name="user_teacher" id="user_teacher">
+                         <option disabled selected value>กรุณาเลือก</option>
+                          <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
+                            <option value="<%=item.user_id%>" disabled <%=teacher?.user_id==item.user_id  && 'selected'%>>
+                              <%=item.user_fname%>
+                                <%=item.user_lname%>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <!-- <div class="form-group col-md-12">
+                        <label for="inputPassword4">คนขับรถ</label>
+                        <input type="text"  class="form-control" id="inputlname" value="<%=result.user_driver%>" disabled>
                       </div>
                     <div class="form-group col-md-12">
                       <label for="inputAddress">ครูประจำรถ</label>      
-                      <input type="text"  class="form-control" id="inputtel" value="<%=result.teacher%>" disabled>
-                    </div>
+                      <input type="text"  class="form-control" id="inputtel" value="<%=result.user_teacher%>" disabled>
+                    </div> -->
                   </form> 
                 </main>
 	</div>

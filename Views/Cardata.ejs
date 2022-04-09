@@ -166,7 +166,7 @@
 
 		app.controller("MainController", ['$scope', function ($scope) {
 
-			$scope.limit = 5;
+			$scope.limit = 10;
 			$scope.column = 'car_no';
 			$scope.page = 0;
 			$scope.reverseSort = false;
@@ -187,7 +187,7 @@
 			$scope.paginate = function (page) {
 				$scope.page = page;
 				console.log($scope.page, page);
-				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 5)
+				$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
 			}
 			$scope.sortColumn = function (column) {
 				$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
@@ -198,7 +198,7 @@
 			let i = 0;
 			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
 			console.log($scope.length);
-			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 5)
+			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
 		}]);
 
 

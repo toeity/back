@@ -16,7 +16,8 @@
 		<nav class="menu">
 			<ul>
 				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
-						style="width:100px;height:100px; margin:30px 70px 30px"></div>
+						style="width:100px;height:100px; margin-top:30px; margin-left:70px;  margin-bottom:30px;  ">
+				</div>
 				<input class="bar" type="radio" name="menu" id="archive" checked>
 
 				<li>
@@ -25,7 +26,8 @@
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
 					</a>
 					<a href="http://localhost:5001/Requestuser">
-						<ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						อนุมัติสิทธิผู้ใช้
 					</a>
 					<a href="http://localhost:5001/Authuser">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
@@ -45,98 +47,194 @@
 			</ul>
 		</nav>
 		<main class="main">
-			<div class="row">
-				<div class="card-group col-md-3">
-					<h3>
-						จำนวนเด็ก <ion-icon name="happy-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.student%>
-						</p>
+			<div class="card">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-group col-md-3">
+							<h5>
+								จำนวนเด็ก <ion-icon name="happy-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.student%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupa col-md-3">
+							<h5>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result?.user[0]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupb col-md-3">
+							<h5>จำนวนครูประจำรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[1]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupc col-md-3">
+							<h5>จำนวนคนขับรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[2]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupd col-md-3">
+							<h5>จำนวนผู้บริหาร <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[3]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+
+						<div class="card-groupe col-md-3">
+							<h5>จำนวนแอดมิน <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[4]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupf col-md-3">
+							<h5>จำนวนรถ <ion-icon name="car-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.car.carCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupg col-md-3">
+							<h5>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num" id="userall">
+									<%=result.userAll%>
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="card-group col-md-3">
-					<h3>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.user[0].authCount%>
-						</p>
-					</div>
+
+				<div class="col-md-6 ">
+					<h4>จำนวนผู้ใช้ในระบบ <%=result.userAll%> คน</h4>
+					<canvas id="myChart"></canvas>
 				</div>
-				<div class="card-group col-md-3">
-					<h3>จำนวนครูประจำรถ <ion-icon name="person-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.user[1].authCount%>
-						</p>
-					</div>
+				<div class="col-md-6  ">
+					
+					<h4>จำนวนเหตุการณ์ <%=allAccident%> เหตุการณ์</h4>
+					<!-- <div class="col-md-4">
+						
+						<select class="form-control" name="noti" id="noti">
+							<option value="" selected>ทั้งหมด</option>
+							<option value="2564">ปี 2564</option>
+							<option value="2565">ปี 2565</option>
+						</select>
+					</div> -->
+					<View clss="rowmyChart1" />
+					<canvas id="myChart1"></canvas>
+
 				</div>
-				<div class="card-group col-md-3">
-					<h3>จำนวนคนขับรถ <ion-icon name="person-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.user[2].authCount%>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="card-group col-md-3">
-					<h3>จำนวนผู้บริหาร <ion-icon name="person-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.user[3].authCount%>
-						</p>
-					</div>
-				</div>
-				<div class="card-group col-md-3">
-					<h3>จำนวนแอดมิน <ion-icon name="person-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.user[4].authCount%>
-						</p>
-					</div>
-				</div>
-				<div class="card-group col-md-3">
-					<h3>จำนวนรถ <ion-icon name="car-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num">
-							<%=result.car.carCount%>
-						</p>
-					</div>
-				</div>
-				<div class="card-group col-md-3">
-					<h3>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="icon"></ion-icon>
-					</h3>
-					<div>
-						<p class="num" id="userall">
-							<%=result.userAll%>
-						</p>
-					</div>
-				</div>
-			</div>
 
 		</main>
 	</div>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<!-- Check Login -->
+
+	<!-- End Check Login -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<script src="/js/auth.js"></script>
 	<script>
+		console.log("<%=result.userAll%>");
 		hasLogin();
+		const ctx = document.getElementById('myChart');
+		const myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: [
+					'ผู้ปกครอง <%=result.user[0]?.authCount%> คน',
+					'ครูประจำรถ <%=result.user[1]?.authCount%> คน',
+					'คนขับรถ <%=result.user[2]?.authCount%> คน',
+					'ผู้บริหาร <%=result.user[3]?.authCount%> คน',
+					'แอดมิน <%=result.user[4]?.authCount%> คน'
+				],
+				datasets: [{
+					label: 'ผู้ใช้งานในระบบ',
+					data: ["<%=result.user[0]?.authCount%>", "<%=result.user[1]?.authCount%>", "<%=result.user[2]?.authCount%>", "<%=result.user[3]?.authCount%>", "<%=result.user[4]?.authCount%>"],
+					backgroundColor: [
+						'rgb(211, 204, 132)',
+						'rgb(133, 214, 214)',
+						'rgb(85, 214, 171)',
+						'rgb(250, 128, 114)',
+						'rgb(244, 164, 96)',
+					],
+					hoverOffset: -2,
+					borderColor: "transparent"
+				}]
+			},
+			options: {
+				plugins: {
+					legend: {
+						position: 'right',
+					}
+				}
+			}
+		});
+		const ctx1 = document.getElementById('myChart1');
+		const myChart1 = new Chart(ctx1, {
+			type: 'line',
+			data: {
+				labels: ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."],
+
+				datasets: [{
+					label: 'จำนวนเหตุการณ์',
+					data: "<%=noti%>".split(','),
+					fill: false,
+					hoverOffset: 3,
+					borderColor: 'rgb(250, 128, 114)',
+
+				}]
+			},
+			options: {
+				plugins: {
+					legend: {
+						position: 'off',
+						tension: 0.1,
+					}
+
+				}
+			},
+
+		});
+
 	</script>
-	<!-- End Check Login -->
 </body>
-
-<script>
-
-</script>
 
 </html>

@@ -1,146 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />  
-    <link rel="stylesheet" href="/css/viewrequestuser.css"/>
-    <title>Viewrequestuser Page</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.css" />
+  <link rel="stylesheet" href="/css/viewrequestuser.css" />
+  <title>Viewrequestuser Page</title>
 </head>
-<body> 
 
-    <div class="container">
+<body>
+  <div class="container">
+    <nav class="menu">
+      <ul>
+        <div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
+            style="width:100px;height:100px; margin:30px 70px 30px"></div>
+        <input class="bar" type="radio" name="menu" id="archive" checked>
+        <li>
+          <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
+          <a href="http://localhost:5001/Home">
+            <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+          </a>
+          <a href="http://localhost:5001/Requestuser">
+            <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Authuser">
+            <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Cardata">
+            <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+          </a>
+          <a href="http://localhost:5001/Leaveinfo">
+            <ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
+          </a>
+          <a onclick="logout()">
+            <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+          </a>
 
-      <nav class="menu">
-        <ul>
-          <div class="logo"><img  src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px; margin:30px 70px 30px"></div>
-          <input class="bar" type="radio"  name="menu" id="archive" checked>
-                  
-          <li>
-            <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-            <a href="http://localhost:5001/Home" ><ion-icon name="home-outline" class="icon"></ion-icon>dashboard</a>
-            <a href="http://localhost:5001/Requestuser" ><ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้</a>
-            <a href="http://localhost:5001/Authuser" ><ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้</a>
-            <a href="http://localhost:5001/Cardata" ><ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ</a>
-            <a href="http://localhost:5001/Leaveinfo"><ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา </a>
-            <a onclick="logout()"> <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ</a>
-          
-          </li>
-          
-        </ul>
-      </nav>
-		<main class="main">
-			<div class="card">
-        
-				<h2><ion-icon name="eye-outline" class="icon"></ion-icon>ข้อมูลสิทธิผู้ใช้</h2>
-			
+        </li>
+      </ul>
+    </nav>
+    <main class="main">
+      <div class="card">
+        <h2>
+          <ion-icon name="eye-outline" class="icon"></ion-icon>ข้อมูลสิทธิผู้ใช้
+        </h2>
         <form>
-                    
           <div class="form-group col-md-6">
-              <label for="inputAddress">อีเมล์</label>      
-              <input type="text"  class="form-control" id="inputtel" value="<%=result.user_email%>" disabled>
-            </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">รหัสผ่าน</label>
-          <input type="text" class="form-control" id="inputPassword4" value="<%=result.user_pass%>" disabled>
-        </div>
-      
-      <div class="form-group col-md-6">
-          <label for="inputEmail4">ชื่อจริง</label>
-          <input type="text" class="form-control" id="inputfname" value="<%=result.user_fname%>" disabled>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">นามสกุล</label>
-          <input type="text"  class="form-control" id="inputlname" value="<%=result.user_lname%>" disabled>
-        </div>
-      <div class="form-group col-md-12">
-        <label for="inputAddress">เบอร์โทร</label>      
-        <input type="text"  class="form-control" id="inputtel" value="<%=result.user_tel%>" disabled>
-      </div>
-       
-     
-    </form> 
-                </main>
-	</div>
+            <label for="inputAddress">อีเมล์</label>
+            <input type="text" class="form-control" id="inputtel" value="<%=result.user_email%>" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">รหัสผ่าน</label>
+            <input type="text" class="form-control" id="inputPassword4" value="<%=result.user_pass%>" disabled>
+          </div>
 
-	<script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
-    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-<!--
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">ชื่อจริง</label>
+            <input type="text" class="form-control" id="inputfname" value="<%=result.user_fname%>" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">นามสกุล</label>
+            <input type="text" class="form-control" id="inputlname" value="<%=result.user_lname%>" disabled>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="inputAddress">เบอร์โทร</label>
+            <input type="text" class="form-control" id="inputtel" value="<%=result.user_tel%>" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputcarno">หมายเลขรถ</label>
+            <input type="text" class="form-control" id="inputcarno" value="<%=result.car_no%>" disabled>
+          </div>
+        </form>
+    </main>
+  </div>
+  <script data-require="angular.js@1.5.8" data-semver="1.5.8"
+    src="https://code.angularjs.org/1.5.8/angular.js"></script>
+  <script data-require="jquery@3.0.0" data-semver="3.0.0"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+  <!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-<!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
-<!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script>
-		//var app = angular.module("app", [])
-var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
+  <!-- jQuery UI CSS  https://bootsnipp.com/snippets/Pa5Wr -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+  <!-- https://stackoverflow.com/questions/43079235/get-selected-row-of-angularjs-ui-grid -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js "></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.min.js"></script>-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-touch.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    //var app = angular.module("app", [])
+    var app = angular.module('app', ['ui.grid', 'ui.grid.pagination', 'ui.grid.selection']);
 
-//myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
-//initCntrl]);
+    //myApp.controller("myCntrl", ['$scope', '$http', 'i18nService', 
+    //initCntrl]);
+    app.controller("MainController", ['$scope', function ($scope) {
+    
+      $scope.limit = 25;
+      $scope.column = 'user_id';
+      $scope.reverseSort = false;
+      $scope.sortClass = "text-primary";
 
-app.controller("MainController", ['$scope', function($scope) {
-	
-	$scope.limit = 25;
-	$scope.column = 'user_id';
-	$scope.reverseSort = false;
-	$scope.sortClass = "text-primary";
-	
-	$scope.sortColumn = function(column) {
-		$scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
-		$scope.column = column;
-	};
-	
-	let result = JSON.parse('<%=result%>'.replaceAll("&#34;","\""));
-	$scope.properties = result
-}]);
+      $scope.sortColumn = function (column) {
+        $scope.reverseSort = ($scope.column == column) ? !$scope.reverseSort : false;
+        $scope.column = column;
+      };
+
+      let result = JSON.parse('<%=result%>'.replaceAll("&#34;", "\""));
+      $scope.properties = result
+    }]);
 
 
-//app.controller("MainController", ['$scope', function($scope) {
-app.controller("MoveCtrl", ['$scope', function($scope) {
-	 $scope.moveItem = function(items, from, to) {
+    //app.controller("MainController", ['$scope', function($scope) {
+    app.controller("MoveCtrl", ['$scope', function ($scope) {
+      $scope.moveItem = function (items, from, to) {
 
         console.log('Move items: ' + items + ' From: ' + from + ' To: ' + to);
         //Here from is returned as blank and to as undefined
 
-        items.forEach(function(item) {
+        items.forEach(function (item) {
           var user_idx = from.indexOf(item);
           if (user_idx != -1) {
-              from.splice(user_idx, 1);
-              to.push(item);      
+            from.splice(user_idx, 1);
+            to.push(item);
           }
         });
-    };
-    $scope.moveAll = function(from, to) {
+      };
+      $scope.moveAll = function (from, to) {
 
-        console.log('Move all  From:: '+from+' To:: '+to);
+        console.log('Move all  From:: ' + from + ' To:: ' + to);
         //Here from is returned as blank and to as undefined
 
-        angular.forEach(from, function(item) {
-            to.push(item);
+        angular.forEach(from, function (item) {
+          to.push(item);
         });
         from.length = 0;
-    };                
+      };
 
-    $scope.selectedclients = [];                               
+      $scope.selectedclients = [];
 
-	}]);
+    }]);
 
-	</script>
+  </script>
   <script src="/js/auth.js"></script>
-	<script>
-		 hasLogin();
-	</script> 
+  <script>
+    hasLogin();
+  </script>
 </body>
+
 </html>
