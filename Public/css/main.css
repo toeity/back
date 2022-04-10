@@ -1,6 +1,6 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet';
 
 * {
 	margin: 0;
@@ -15,7 +15,6 @@ body {
 .container {
 	width: 100%;
 	height: 100%;
-	margin: 0 auto;
 }
 
 nav {
@@ -24,14 +23,16 @@ nav {
 	align-items: flex-start;
 	width: 15%;
 	height: 100%;
-	background-color: #fff;
+	background-color: rgb(166, 72, 72);
+	z-index: 1;
 }
 
 .icon {
-	margin: 0 auto;
-	align-content: center;
+
+	margin-right: 10px;
 	width: 20px;
 	height: 20px;
+	background-color: rgb(55, 245, 191);
 }
 
 main {
@@ -40,18 +41,23 @@ main {
 	width: 85%;
 	height: 100%;
 	background-color: #ff9900;
-	overflow: auto;
+	overflow: hidden;
 	padding: 40px;
 }
 
-
-.txt {
+h3 {
 	font-weight: bold;
 	margin-bottom: 50px;
-	font-size: 35px;
+	font-size: 55px;
 	text-align: left;
 	color: #fff;
 }
+
+p {
+	margin-bottom: 0px;
+	line-height: 26px;
+}
+
 li,
 ul label.title,
 ul,
@@ -68,17 +74,25 @@ ul label {
 }
 
 ul {
-	height: 300px;
-}
+	height: 20%;
+	align-items: center;
+	background-color: rgb(255, 251, 0);
 
-ul li {
-	height: 350px;
-	overflow: hidden;
-	transition: all .3s;
 }
+ul img{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	background-color: rgb(36, 155, 219);
+}
+/* ul li {
+	height: 35px;
+
+	transition: all .3s;
+} */
 
 li {
 	display: block;
+	
 	background-color: #fff;
 }
 
@@ -93,7 +107,7 @@ label.title {
 a {
 	font-size: 12px;
 	text-decoration: none;
-	color: #000;
+	color: rgb(0, 0, 0);
 	display: block;
 	padding: 10px 25px;
 	transition: all .25s;
@@ -123,41 +137,40 @@ i {
 	margin-right: 12px;
 }
 
-@media only screen and (max-width: 600px) {
-	container {
-		flex-direction: column;
-
-	}
-
+@media screen and (max-width: 1040px) {
 	nav {
 		width: 100%;
 		position: relative;
-
+		background-color: #181be1;
 	}
 
 	main {
 		width: 100%;
 		position: relative;
-		overflow: auto;
+		background-color: #e11818;
 	}
 }
 
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 1000px) {
 	container {
 		flex-direction: column;
+
 	}
 
 	nav {
 		width: 100%;
 		position: relative;
-		background-color: #0dcaf0;
+		align-items: center;
+		background-color: #e1c318;
+
 	}
 
 	main {
 		width: 100%;
 		position: relative;
 		overflow: auto;
-		background-color: #769739;
+		background-color: #e118bc;
+
 	}
 }
 
@@ -287,6 +300,7 @@ h5 {
 	margin-left: 100px;
 	color: #000;
 }
+
 #myChart {
 	margin-top: 0px;
 	width: 450px !important;
@@ -304,21 +318,29 @@ data .labels {
 	width: 280px;
 }
 
+.countuser {
+	margin-top: 40px;
+}
+
+.countevent {
+	margin-top: 40px;
+}
+
 #myChart1 {
-	margin-top: 50px;
+	margin-top: 70px;
 	margin-right: 1px;
-	width: 430px !important;
-	height: 210px !important;
+	width: 550px !important;
+	height: 280px !important;
 	font-family: 'Montserrat', sans-serif;
 }
-  /* Fix for IE 8 putting the arrows behind the select element. */
-  
-  
-  /* Dirty fix for Firefox adding padding where it shouldn't. */
-  
-  @-moz-document url-prefix() {
+
+/* Fix for IE 8 putting the arrows behind the select element. */
+
+
+/* Dirty fix for Firefox adding padding where it shouldn't. */
+
+@-moz-document url-prefix() {
 	.dropdown-select {
-	  padding-left: 6px;
+		padding-left: 6px;
 	}
-  }
-  
+}

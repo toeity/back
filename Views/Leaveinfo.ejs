@@ -101,7 +101,7 @@
 
 								<td ng-if="property['leaves.leave_user.leave_type'] == 0">
 									<a style="width: 40px; height: 30px"
-										href="http://localhost:5001/Leaveedit/{{property.car_no}}" role="button"
+										href="http://localhost:5001/Leaveedit/{{property.car_no}}?id={{property['leaves.leave_user.id']}}" role="button"
 										class="btn btn-success">
 										<ion-icon name="mail-unread-outline"></ion-icon>
 									</a>
@@ -111,7 +111,7 @@
 										<ion-icon name="mail-open-outline"></ion-icon>
 									</a>
 								</td>
-
+   
 							</tr>
 						</table>
 

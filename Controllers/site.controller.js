@@ -54,21 +54,21 @@ exports.HomePage = function (req, res, next) {
                         [fn('count', col('noti_id')), 'notiCount'],
                         [fn('month', fn('str_to_date', col('noti_time'), '%d/%m/%Y')), 'month']
                     ],
-                    
+
                     group: ['month'],
                     where: {
-                        noti_static:1
+                        noti_static: 1
                     }
                 }).then(noti => {
                     let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                    noti.forEach(n=>{
+                    noti.forEach(n => {
                         let value = n.toJSON();
-                        data[value.month-1] = value.notiCount;
+                        data[value.month - 1] = value.notiCount;
                     })
-                    
-                    
-                console.log(data);
-                    return res.render("Home", { result: result, noti: data ,allAccident:(data.reduce((sum,num)=>sum+num))})
+
+
+                    console.log(data);
+                    return res.render("Home", { result: result, noti: data, allAccident: (data.reduce((sum, num) => sum + num)) })
                 })
             })
         })
@@ -91,7 +91,7 @@ exports.LeaveinfoPage = function (req, res) {
     User.findAll({
         raw: true, include: [Auth, { model: Leave, required: true }], where: {
             auth_id: [2, 3]
-        }
+        },
     }).then(function (result) {
         console.log(result);
         return res.render("Leaveinfo", { result: JSON.stringify(result) })
@@ -102,7 +102,7 @@ exports.LeaveinfoPage = function (req, res) {
 // exports.LeaveUser = async function (req, res) {
 //     const user = await User.findOne({
 //         where: { user_id: req.params.user_id }
-//     })
+//     })   
 //     sendMail('allowLeave', user.user_email)
 //     await LeaveUser.update({
 //         Leave_type: 1
@@ -121,23 +121,26 @@ exports.LeaveeditPage = function (req, res) {
         const cars = await Car.findOne({ where: { car_no: req.params.car_no } })
         const teacher = await User.findOne({ where: { car_no: req.params.car_no, auth_id: 2 } });
         const driver = await User.findOne({ where: { car_no: req.params.car_no, auth_id: 3 } });
-        return res.render("Leaveedit", { result, cars, teacher, driver })
+        return res.render("Leaveedit", { result, cars, teacher, driver, car_no: req.params.car_no,id:req.query.id })
     })
 }
 exports.LeaveeditAction = function (req, res) {
     console.log("Leaveedit action, ", req.body)
+    console.log(req.body);
+    const car_no = req.params.car_no
     var userUpdate = [
         {
             user_id: parseInt(req.body.user_driver),
-            car_no: parseInt(req.body.car_no),
+            car_no: parseInt(car_no),
         },
         {
             user_id: parseInt(req.body.user_teacher),
-            car_no: parseInt(req.body.car_no)
+            car_no: parseInt(car_no)
         }
     ];
-    User.findAll({ where: { car_no: req.body.car_no } }).then((users) => {
+    User.findAll({ where: { car_no: car_no, auth_id: {[Op.in] : [2,3]} } }).then((users) => {
         users.forEach((dataUser) => {
+
             let checkUser = userUpdate.find((dataUp) => dataUp.user_id == dataUser.dataValues.user_id);
             if (!checkUser) {
                 userUpdate.push({
@@ -147,29 +150,47 @@ exports.LeaveeditAction = function (req, res) {
             }
         })
         console.log("userUpdate", userUpdate)
-        Car.update({ car_reg: req.body.car_reg, car_seat: req.body.car_seat }, { where: { car_no: req.body.car_no } }).then(() => {
+        Car.update({ car_reg: req.body.car_reg, car_seat: req.body.car_seat }, { where: { car_no: car_no } }).then(() => {
             // console.log(users)
             // if(req.body.user_driver != )
             User.bulkCreate(userUpdate, { updateOnDuplicate: ['user_id', 'car_no'] }).then(async () => {
                 req.session.message = "success"
-                // await LeaveUser.update({
-
-                //     leave_type: 1
-                // }, {
-                //     where: {
-                //         user_id: req.params.user_id,
-                //         leave_type: 0
-                //     }
-                // })
-                // sendMail('allowLeave', data.user_email) 
-                return res.redirect('/Leaveedit/' + req.body.car_no)
+                console.log(await LeaveUser.update({
+                    leave_type: 1
+                }, {
+                    where: {
+                        user_id: [req.body.driver_temp,req.body.teacher_temp],
+                        leave_type: 0,
+                        id:req.body.lid
+                    }
+                }));
+                console.log({
+                    user_id: parseInt(req.body.user_driver),
+                    leave_type: 0
+                });
+                let data = await User.findAll({
+                    where: {
+                        user_id: [parseInt(req.body.user_driver),parseInt(req.body.user_teacher)]
+                    }
+                })
+                if(data){
+                    data.forEach(user=>{
+                        sendMail('allowLeave', user.user_email)
+                    })
+                }
+                // if(data){
+                //     sendMail('allowLeave', data.user_email)
+                // }
+                console.log(data.user_email);
+                return res.redirect('/Leaveedit/' + car_no)
 
             })
         })
     }).catch(err => {
+        console.log(err);
         req.session.message = "error"
-        sendMail('allownotLeave', data.user_email)
-        return res.redirect('/Leaveeditr/' + req.body.car_no)
+        console.log('error');
+        return res.redirect('back')
     })
 }
 
@@ -245,6 +266,7 @@ exports.DeleteUsersixAction = function (req, res) {
 }
 
 const sendMail = function (type, to) {
+    const leave_name = ''
     const nodemailer = require('nodemailer');
     let template = ''
     const transporter = nodemailer.createTransport({
@@ -402,6 +424,18 @@ exports.AddCarAction = async function (req, res) {
 
 }
 
+// User.findAll({ where: { car_no: car_no, auth_id: {[Op.in] : [2,3]} } }).then((users) => {
+//     users.forEach((dataUser) => {
+
+//         let checkUser = userUpdate.find((dataUp) => dataUp.user_id == dataUser.dataValues.user_id);
+//         if (!checkUser) {
+//             userUpdate.push({
+//                 user_id: dataUser.dataValues.user_id,
+//                 car_no: null
+//             })
+//         }
+//     })
+
 exports.EditcarPage = function (req, res) {
     User.findAll().then(async function (result) {
         const cars = await Car.findOne({ where: { car_no: req.params.car_no } })
@@ -409,9 +443,8 @@ exports.EditcarPage = function (req, res) {
         const driver = await User.findOne({ where: { car_no: req.params.car_no, auth_id: 3 } });
         return res.render("Editcar", { result, cars, teacher, driver })
     })
-
-
 }
+
 exports.EditcarAction = function (req, res) {
     console.log("Edit car action, ", req.body)
     var userUpdate = [
@@ -424,7 +457,7 @@ exports.EditcarAction = function (req, res) {
             car_no: parseInt(req.body.car_no)
         }
     ];
-    User.findAll({ where: { car_no: req.body.car_no } }).then((users) => {
+    User.findAll({ where: { car_no: req.body.car_no , auth_id: {[Op.in]: [2,3]}} }).then((users) => {
         users.forEach((dataUser) => {
             let checkUser = userUpdate.find((dataUp) => dataUp.user_id == dataUser.dataValues.user_id);
             if (!checkUser) {

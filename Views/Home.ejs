@@ -9,18 +9,18 @@
 
 	<link rel="stylesheet" href="/css/main.css" />
 	<title>Home Page</title>
-</head>
+</head>   
 
 <body>
 	<div class="container">
 		<nav class="menu">
 			<ul>
 				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
-						style="width:100px;height:100px; margin-top:30px; margin-left:70px;  margin-bottom:30px;  ">
+						style="width:100px;height:100px;">
 				</div>
 				<input class="bar" type="radio" name="menu" id="archive" checked>
 
-				<li>
+				<li >
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
 					<a href="http://localhost:5001/Home">
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
@@ -32,7 +32,7 @@
 					<a href="http://localhost:5001/Authuser">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Cardata">
+					<a href="http://localhost:5001/Cardata">   
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
 					<a href="http://localhost:5001/Leaveinfo">
@@ -142,25 +142,17 @@
 				</div>
 
 				<div class="col-md-6 ">
-					<h4>จำนวนผู้ใช้ในระบบ <%=result.userAll%> คน</h4>
+					<h4 class="countuser">จำนวนผู้ใช้ในระบบ <%=result.userAll%> คน</h4>
 					<canvas id="myChart"></canvas>
 				</div>
 				<div class="col-md-6  ">
 					
-					<h4>จำนวนเหตุการณ์ <%=allAccident%> เหตุการณ์</h4>
-					<!-- <div class="col-md-4">
-						
-						<select class="form-control" name="noti" id="noti">
-							<option value="" selected>ทั้งหมด</option>
-							<option value="2564">ปี 2564</option>
-							<option value="2565">ปี 2565</option>
-						</select>
-					</div> -->
+					<h4 class="countevent" >จำนวนเหตุการณ์ <%=allAccident%> เหตุการณ์</h4>
 					<View clss="rowmyChart1" />
 					<canvas id="myChart1"></canvas>
 
 				</div>
-
+    
 		</main>
 	</div>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

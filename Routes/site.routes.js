@@ -36,7 +36,7 @@ module.exports = function(app){
 
     app.get('/Leaveinfo', controller.LeaveinfoPage);
     app.get('/Leaveedit/:car_no',controller.LeaveeditPage);
-    app.post('/Leaveedit',controller.LeaveeditAction);
+    app.post('/Leaveedit/:car_no',controller.LeaveeditAction);
 
 
 }

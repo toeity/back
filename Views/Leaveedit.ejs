@@ -17,40 +17,40 @@
     <nav class="menu">
       <ul>
         <div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
-          style="width:100px;height:100px; margin:30px 70px 30px"></div>
-          <input class="bar" type="radio" name="menu" id="archive" checked>
-          
-          <li>
-            <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-            <a href="http://localhost:5001/Home">
-              <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
-            </a>
-            <a href="http://localhost:5001/Requestuser">
-              <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
-            </a>
-            <a href="http://localhost:5001/Authuser">
-              <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
-            </a>
-            <a href="http://localhost:5001/Cardata">
-              <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
-            </a>
-            <a href="http://localhost:5001/Leaveinfo">
-              <ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
-            </a>
-            <a onclick="logout()">
-              <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
-            </a>
-            
-          </li>
-          
-        </ul>
-      </nav>
-      <main class="main">
-        <div class="card">
-          <h2>
+            style="width:100px;height:100px; margin:30px 70px 30px"></div>
+        <input class="bar" type="radio" name="menu" id="archive" checked>
+
+        <li>
+          <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
+          <a href="http://localhost:5001/Home">
+            <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+          </a>
+          <a href="http://localhost:5001/Requestuser">
+            <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Authuser">
+            <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+          </a>
+          <a href="http://localhost:5001/Cardata">
+            <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+          </a>
+          <a href="http://localhost:5001/Leaveinfo">
+            <ion-icon name="document-text-outline" class="icon"></ion-icon>ข้อมูลการลา
+          </a>
+          <a onclick="logout()">
+            <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+          </a>
+
+        </li>
+
+      </ul>
+    </nav>
+    <main class="main">
+      <div class="card">
+        <h2>
           <ion-icon name="create-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
         </h2>
-        <form method="post" action="/Leaveedit">
+        <form method="post" action="/Leaveedit/<%=car_no%>">
 
           <div class="form-group col-md-12">
 
@@ -67,35 +67,39 @@
             <label for="inputEmail4">จำนวนที่นั่ง</label>
             <input type="text" class="form-control" name="car_seat" id="car_seat" value="<%=cars.car_seat%>" disabled>
           </div>
+          <input type="hidden" name="driver_temp" value="<%=driver?.user_id%>">
+          <input type="hidden" name="lid" value="<%=id%>">
           <div class="form-group col-md-12">
-                 <label for="inputPassword4">คนขับรถ</label>
-                 <select class="form-control" name="user_driver" id="user_driver" >
-                   <option disabled selected value>กรุณาเลือก</option>
-                  <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
-                     <option value="<%=item.user_id%>" <%=driver?.user_id==item.user_id  && 'selected'%>>
-                       <%=item.user_fname%>
-                         <%=item.user_lname%>
-                     </option>
-                     <%})%>
-                 </select>
-               </div>
-               <div class="form-group col-md-12">
-                 <label for="inputAddress">ครูประจำรถ</label>
-                 <select class="form-control" name="user_teacher" id="user_teacher">
-                  <option disabled selected value>กรุณาเลือก</option>
-                   <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
-                     <option value="<%=item.user_id%>" <%=teacher?.user_id==item.user_id  && 'selected'%>>
-                       <%=item.user_fname%>
-                         <%=item.user_lname%>
-                     </option>
-                     <%})%>
-                 </select>
-               </div>
+            <label for="inputPassword4">คนขับรถ</label>
+            <select class="form-control" name="user_driver" id="user_driver">
+              <option disabled selected value>กรุณาเลือก</option>
+              <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
+                <option value="<%=item.user_id%>" <%=driver?.user_id==item.user_id && 'selected' %>>
+                  <%=item.user_fname%>
+                    <%=item.user_lname%>
+                </option>
+                <%})%>
+            </select>
+          </div>
+          <input type="hidden" name="teacher_temp" value="<%=teacher?.user_id%>">
+          <input type="hidden" name="kid" value="<%=id%>">
+          <div class="form-group col-md-12">
+            <label for="inputAddress">ครูประจำรถ</label>
+            <select class="form-control" name="user_teacher" id="user_teacher">
+              <option disabled selected value>กรุณาเลือก</option>
+              <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
+                <option value="<%=item.user_id%>" <%=teacher?.user_id==item.user_id && 'selected' %>>
+                  <%=item.user_fname%>
+                    <%=item.user_lname%>
+                </option>
+                <%})%>
+            </select>
+          </div>
 
           <div class="col-md-6">
             <button type="button" onclick="Leaveedit()" style="width: 60px; height: 30px; margin-right: 10px;"
               class="btn btn-info">ตกลง</button>
-            <input type="submit"  id="form-edit" hidden="true" />
+            <input type="submit" id="form-edit" hidden="true" />
             <a style="width: 60px; height: 30px" href="http://localhost:5001/Leaveinfo" role="button"
               class="btn btn-warning">ยกเลิก</a>
           </div>

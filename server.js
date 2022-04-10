@@ -18,7 +18,10 @@ const Noti = require('./Models/Noti');
 const app = express();
 db.sequelize.sync()
 app.use(cors());
-
+app.use((req,res,next)=>{
+    console.log(req.path,req.method);
+    next()
+})
 // Error session
 app.use(sessions(
     {
