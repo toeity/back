@@ -482,7 +482,6 @@ exports.EditcarAction = function (req, res) {
     })
 }
 
-
 exports.ViewcarPage = function (req, res) {
     User.findAll().then(async function (result) {
         const cars = await Car.findOne({ where: { car_no: req.params.car_no } })
@@ -490,16 +489,4 @@ exports.ViewcarPage = function (req, res) {
         const driver = await User.findOne({ where: { car_no: req.params.car_no, auth_id: 3 } });
         return res.render("Viewcar", { result, cars, teacher, driver })
     })
-    // Car.hasMany(User, { foreignKey: 'car_no' })
-    // User.findAll().then((users) => {
-    //     Car.findOne({ raw: true, where: { car_no: req.params.car_no } }).then(function (result) {
-    //         if (!!result) {
-
-    //             // console.log(data);
-    //             return res.render("Viewcar", { result: data })
-    //         } else {
-
-    //         }
-    //     })
-    // })
 }
