@@ -23,21 +23,23 @@
 
 				<li>
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-					<a href="http://localhost:5001/Home">
+					<a  onclick="linkPage('/Home')">
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
 					</a>
-					<a href="http://localhost:5001/Requestuser">
-						<ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+					<a  onclick="linkPage('/Requestuser')">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						อนุมัติสิทธิผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Authuser">
+					<a  onclick="linkPage('/Authuser')">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Cardata">
+					<a  onclick="linkPage('/Cardata')">
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
-					<a href="http://localhost:5001/Leaveinfo">
+					<a  onclick="linkPage('/Leaveinfo')">
 						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
 					</a>
+					
 					<a onclick="logout()">
 						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
 					</a>
@@ -75,7 +77,7 @@
 
 							<div>
 								<a style="width: 80px; height: 32px; margin-top: 25px;"
-									href="http://localhost:5001/Addcar" role="button" class="btn btn-primary">
+								 onclick="linkPage('/Addcar')" role="button" class="btn btn-primary">
 									<ion-icon name="add-circle-outline" class="icon"></ion-icon>เพิ่ม
 								</a>
 							</div>
@@ -105,12 +107,15 @@
 
 								<td>
 									<a style="width: 40px; height: 30px"
-										href="http://localhost:5001/Viewcar/{{property.car_no}}" role="button"
+									href="{{settingDefault.apiurl}}/Viewcar/{{property.car_no}}"
+
+										 role="button"
 										class="btn btn-info">
 										<ion-icon name="eye-outline"></ion-icon>
 									</a>
 									<a style="width: 40px; height: 30px"
-										href="http://localhost:5001/Editcar/{{property.car_no}}" role="button"
+									href="{{settingDefault.apiurl}}/Editcar/{{property.car_no}}"
+									role="button"
 										class="btn btn-warning">
 										<ion-icon name="create-outline"></ion-icon>
 									</a>
@@ -234,6 +239,7 @@
 
 	</script>
 	<script src="/js/auth.js"></script>
+	<script src="/js/app.js"></script>
 	<script>
 		 hasLogin();
 	</script> 

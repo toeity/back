@@ -24,21 +24,23 @@
 
 				<li>
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-					<a href="http://localhost:5001/Home">
+					<a  onclick="linkPage('/Home')">
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
 					</a>
-					<a href="http://localhost:5001/Requestuser">
-						<ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+					<a  onclick="linkPage('/Requestuser')">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						อนุมัติสิทธิผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Authuser">
+					<a  onclick="linkPage('/Authuser')">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Cardata">
+					<a  onclick="linkPage('/Cardata')">
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
-					<a href="http://localhost:5001/Leaveinfo">
+					<a  onclick="linkPage('/Leaveinfo')">
 						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
 					</a>
+					
 					<a onclick="logout()">
 						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
 					</a>
@@ -101,7 +103,9 @@
 
 								<td ng-if="property['leaves.leave_user.leave_type'] == 0">
 									<a style="width: 40px; height: 30px"
-										href="http://localhost:5001/Leaveedit/{{property.car_no}}?id={{property['leaves.leave_user.id']}}" role="button"
+										href="{{settingDefault.apiurl}}/Leaveedit/{{property.car_no}}?id={{property['leaves.leave_user.id']}}"
+										 
+										role="button"
 										class="btn btn-success">
 										<ion-icon name="mail-unread-outline"></ion-icon>
 									</a>
@@ -153,7 +157,7 @@
 		app.controller("MainController", ['$scope', function ($scope) {
 
 			$scope.limit = 8;
-			$scope.column = 'user_id';
+			$scope.column = 'id';
 			$scope.page = 0;
 			$scope.reverseSort = false;
 			$scope.sortClass = "text-primary";
@@ -182,9 +186,9 @@
 				//Here from is returned as blank and to as undefined
 
 				items.forEach(function (item) {
-					var user_idx = from.indexOf(item);
-					if (user_idx != -1) {
-						from.splice(user_idx, 1);
+					var idx = from.indexOf(item);
+					if (idx != -1) {
+						from.splice(idx, 1);
 						to.push(item);
 					}
 				});
@@ -206,6 +210,7 @@
 		}]);
 	</script>
 	<script src="/js/auth.js"></script>
+	<script src="/js/app.js"></script>
 
 	<script>
 		hasLogin();

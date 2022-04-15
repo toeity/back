@@ -21,21 +21,23 @@
           <input class="bar" type="radio" name="menu" id="archive" checked>
           <li>
             <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-            <a href="http://localhost:5001/Home">
+            <a  onclick="linkPage('/Home')">
               <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
             </a>
-            <a href="http://localhost:5001/Requestuser">
-              <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
+            <a  onclick="linkPage('/Requestuser')">
+              <ion-icon name="person-outline" class="icon"></ion-icon>
+              อนุมัติสิทธิผู้ใช้
             </a>
-            <a href="http://localhost:5001/Authuser">
+            <a  onclick="linkPage('/Authuser')">
               <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
             </a>
-            <a href="http://localhost:5001/Cardata">
+            <a  onclick="linkPage('/Cardata')">
               <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
             </a>
-            <a href="http://localhost:5001/Leaveinfo">
+            <a  onclick="linkPage('/Leaveinfo')">
               <ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
             </a>
+            
             <a onclick="logout()">
               <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
             </a>
@@ -71,9 +73,10 @@
                  <select class="form-control" name="user_driver" id="user_driver" >
                    <option disabled selected value>กรุณาเลือก</option>
                   <%result.filter(item=>item.auth_id == 3).forEach(item=>{%>
-                     <option value="<%=item.user_id%>" <%=driver?.user_id==item.user_id  && 'selected'%>>
+                     <option value="<%=item.user_id%>" <%=driver?.user_id==item.user_id  && 'selected'%> >
                        <%=item.user_fname%>
                          <%=item.user_lname%>
+
                      </option>
                      <%})%>
                  </select>
@@ -85,7 +88,7 @@
                    <%result.filter(item=>item.auth_id == 2).forEach(item=>{%>
                      <option value="<%=item.user_id%>" <%=teacher?.user_id==item.user_id  && 'selected'%>>
                        <%=item.user_fname%>
-                         <%=item.user_lname%>
+                         <%=item.user_lname%> 
                      </option>
                      <%})%>
                  </select>
@@ -95,7 +98,8 @@
             <button type="button" onclick="carEdit()" style="width: 60px; height: 30px; margin-right: 10px;"
               class="btn btn-info">ตกลง</button>
             <input type="submit"  id="form-edit" hidden="true" />
-            <a style="width: 60px; height: 30px" href="http://localhost:5001/Cardata" role="button"
+            <a style="width: 60px; height: 30px"
+            onclick="linkPage('/Cardata')" role="button"
               class="btn btn-warning">ยกเลิก</a>
           </div>
         </form>
@@ -118,27 +122,16 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>
-    ocument.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
       console.log("<%=message%>")
       if ("<%=message%>") {
-
-        if ("<%=message%>" === 'success') {
-          Swal.fire({
-            // position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        } else {
-          Swal.fire({
-            // position: 'top-end',
-            icon: 'error',
-            title: 'พัง',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
+        Swal.fire({
+              // position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
       }
     })
     function carEdit() {
@@ -192,8 +185,10 @@
         })
       }
     }
+   
   </script>
   <script src="/js/auth.js"></script>
+  <script src="/js/app.js"></script>
   <script>
     hasLogin();
   </script>

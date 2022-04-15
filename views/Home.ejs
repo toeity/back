@@ -22,22 +22,23 @@
 
 				<li >
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-					<a href="http://localhost:5001/Home">
+					<a  onclick="linkPage('/Home')">
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
 					</a>
-					<a href="http://localhost:5001/Requestuser">
+					<a  onclick="linkPage('/Requestuser')">
 						<ion-icon name="person-outline" class="icon"></ion-icon>
 						อนุมัติสิทธิผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Authuser">
+					<a  onclick="linkPage('/Authuser')">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
 					</a>
-					<a href="http://localhost:5001/Cardata">   
+					<a  onclick="linkPage('/Cardata')">
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
-					<a href="http://localhost:5001/Leaveinfo">
+					<a  onclick="linkPage('/Leaveinfo')">
 						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
 					</a>
+					
 					<a onclick="logout()">
 						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
 					</a>
@@ -161,8 +162,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<script src="/js/auth.js"></script>
+	<script src="/js/app.js"></script>
 	<script>
-		console.log("<%=result.userAll%>");
+		
 		hasLogin();
 		const ctx = document.getElementById('myChart');
 		const myChart = new Chart(ctx, {

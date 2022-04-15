@@ -23,24 +23,26 @@
 
         <li>
           <!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-          <a href="http://localhost:5001/Home">
-            <ion-icon name="home-outline" class="icon"></ion-icon>dashboard
-          </a>
-          <a href="http://localhost:5001/Requestuser">
-            <ion-icon name="person-outline" class="icon"></ion-icon>อนุมัติสิทธิผู้ใช้
-          </a>
-          <a href="http://localhost:5001/Authuser">
-            <ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
-          </a>
-          <a href="http://localhost:5001/Cardata">
-            <ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
-          </a>
-          <a href="http://localhost:5001/Leaveinfo">
-            <ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
-          </a>
-          <a onclick="logout()">
-            <ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
-          </a>
+          <a  onclick="linkPage('/Home')">
+						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+					</a>
+					<a  onclick="linkPage('/Requestuser')">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						อนุมัติสิทธิผู้ใช้
+					</a>
+					<a  onclick="linkPage('/Authuser')">
+						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+					</a>
+					<a  onclick="linkPage('/Cardata')">
+						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+					</a>
+					<a  onclick="linkPage('/Leaveinfo')">
+						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
+					</a>
+					
+					<a onclick="logout()">
+						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+					</a>
         </li>
 
       </ul>
@@ -100,7 +102,7 @@
                     <button type="button" onclick="carCreate()" style="width: 60px; height: 30px; margin-right: 10px;"
                       class="btn btn-info">ตกลง</button>
                     <input type="submit" id="form-create" hidden="true" />
-                    <a style="width: 60px; height: 30px" href="http://localhost:5001/Cardata" role="button"
+                    <a style="width: 60px; height: 30px" onclick="linkPage('/Cardata')" role="button"
                       class="btn btn-warning">ยกเลิก</a>
                   </div>
                 </form>
@@ -149,7 +151,7 @@
       let user_driver = document.getElementById('user_driver').value;
       let user_teacher = document.getElementById('user_teacher').value;
       console.log(car_reg);
-      if (!!car_reg && !!car_no && !!car_seat && !!user_driver && !!user_teacher ) {
+      if (!!car_reg && !!car_no && !!car_seat  ) {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -180,22 +182,12 @@
           title:'กรอกใหม่อีกครั้ง',
           text:'จำนวนที่นั่ง'
         })
-      }else if(user_driver == null || user_driver == ""){
-        Swal.fire({
-          title:'กรอกใหม่อีกครั้ง',
-          text:'คนขับรถ'
-        })
-      }
-      else if(user_teacher == null || user_teacher == ""){
-        Swal.fire({
-          title:'กรอกใหม่อีกครั้ง',
-          text:'ครูประจำรถ'
-        })
       }
     }
    
   </script>
    <script src="/js/auth.js"></script>
+   <script src="/js/app.js"></script>
 	<script>
 		hasLogin();
 	</script> 

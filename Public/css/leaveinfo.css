@@ -220,7 +220,7 @@ label:before {
 		  }
 		  .active{		
 			border: 1.5px solid #ff9900; 
-			width: 240px;
+			width: 80px;
 			background-color: #ffffff;
 			padding: 5px 5px ;
    			 border-radius: 5px;

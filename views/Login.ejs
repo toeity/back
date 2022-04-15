@@ -80,7 +80,7 @@
         success: function (data) {
           console.log(data);
           localStorage.setItem('user',JSON.stringify(data));
-          window.location.replace('http://localhost:5001/Home');
+          window.location.replace(`${settingDefault.apiurl}/Home`);
           
         },
         error: function (e) {
