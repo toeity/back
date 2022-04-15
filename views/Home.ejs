@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/css/main.css" />
+	<title>Home Page</title>
+</head>   
+
+<body>
+	<div class="container">
+		<nav class="menu">
+			<ul>
+				<input class="bar" type="radio" name="menu" id="archive" checked>
+				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
+						style="width:100px;height:100px;">
+				</div>
+
+				<li >
+					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
+					<a href="http://localhost:5001/Home">
+						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
+					</a>
+					<a href="http://localhost:5001/Requestuser">
+						<ion-icon name="person-outline" class="icon"></ion-icon>
+						อนุมัติสิทธิผู้ใช้
+					</a>
+					<a href="http://localhost:5001/Authuser">
+						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
+					</a>
+					<a href="http://localhost:5001/Cardata">   
+						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
+					</a>
+					<a href="http://localhost:5001/Leaveinfo">
+						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
+					</a>
+					<a onclick="logout()">
+						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="main">
+			<div class="card">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-group col-md-3">
+							<h5>
+								จำนวนเด็ก <ion-icon name="happy-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.student%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupa col-md-3">
+							<h5>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result?.user[0]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupb col-md-3">
+							<h5>จำนวนครูประจำรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[1]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupc col-md-3">
+							<h5>จำนวนคนขับรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[2]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupd col-md-3">
+							<h5>จำนวนผู้บริหาร <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[3]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+
+						<div class="card-groupe col-md-3">
+							<h5>จำนวนแอดมิน <ion-icon name="person-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.user[4]?.authCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupf col-md-3">
+							<h5>จำนวนรถ <ion-icon name="car-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num">
+									<%=result.car.carCount%>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="card-groupg col-md-3">
+							<h5>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="icon"></ion-icon>
+							</h5>
+							<div>
+								<p class="num" id="userall">
+									<%=result.userAll%>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 ">
+					<h4 class="countuser">จำนวนผู้ใช้ในระบบ <%=result.userAll%> คน</h4>
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="col-md-6  ">
+					
+					<h4 class="countevent" >จำนวนเหตุการณ์ <%=allAccident%> เหตุการณ์</h4>
+					<View clss="rowmyChart1" />
+					<canvas id="myChart1"></canvas>
+
+				</div>
+    
+		</main>
+	</div>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<!-- Check Login -->
+
+	<!-- End Check Login -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script src="/js/auth.js"></script>
+	<script>
+		console.log("<%=result.userAll%>");
+		hasLogin();
+		const ctx = document.getElementById('myChart');
+		const myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: [
+					'ผู้ปกครอง <%=result.user[0]?.authCount%> คน',
+					'ครูประจำรถ <%=result.user[1]?.authCount%> คน',
+					'คนขับรถ <%=result.user[2]?.authCount%> คน',
+					'ผู้บริหาร <%=result.user[3]?.authCount%> คน',
+					'แอดมิน <%=result.user[4]?.authCount%> คน'
+				],
+				datasets: [{
+					label: 'ผู้ใช้งานในระบบ',
+					data: ["<%=result.user[0]?.authCount%>", "<%=result.user[1]?.authCount%>", "<%=result.user[2]?.authCount%>", "<%=result.user[3]?.authCount%>", "<%=result.user[4]?.authCount%>"],
+					backgroundColor: [
+						'rgb(211, 204, 132)',
+						'rgb(133, 214, 214)',
+						'rgb(85, 214, 171)',
+						'rgb(250, 128, 114)',
+						'rgb(244, 164, 96)',
+					],
+					hoverOffset: -2,
+					borderColor: "transparent"
+				}]
+			},
+			options: {
+				plugins: {
+					legend: {
+						position: 'right',
+					}
+				}
+			}
+		});
+		const ctx1 = document.getElementById('myChart1');
+		const myChart1 = new Chart(ctx1, {
+			type: 'line',
+			data: {
+				labels: ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."],
+
+				datasets: [{
+					label: 'จำนวนเหตุการณ์',
+					data: "<%=noti%>".split(','),
+					fill: false,
+					hoverOffset: 3,
+					borderColor: 'rgb(250, 128, 114)',
+
+				}]
+			},
+			options: {
+				plugins: {
+					legend: {
+						position: 'off',
+						tension: 0.1,
+					}
+
+				}
+			},
+
+		});
+
+	</script>
+</body>
+
+</html>
