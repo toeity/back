@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 //For Websites
 app.use(express.static(path.join(__dirname, "./Public")))
 app.set('view engine', 'ejs');
-app.set("Views", path.join(__dirname, "./Views"))
+// app.set("Views", path.join(__dirname, "./Views"))
 // var corsOptions = {
 //     origin: 'https://localhost:3000',
 // }
