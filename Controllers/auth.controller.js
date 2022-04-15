@@ -3,7 +3,7 @@ const User = require('../Models/User');
 const Car = require('../Models/Car')
 const Student = require('../Models/Student')
 const {fn} = require('sequelize')
-const jwt = require('jsonwebToken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const Auth = require('../Models/Auth');
 exports.addAuth = (req, res) => {
