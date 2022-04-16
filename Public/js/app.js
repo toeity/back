@@ -1,7 +1,7 @@
 
 var settingDefault = {
-  apiurl: "http://45.91.135.221" //prod
- //  apiurl: "http://localhost:5001" //dev
+//  apiurl: "http://45.91.135.221" //prod
+   apiurl: "http://localhost:5001" //dev
 };
 var current = null;
 document.querySelector('#email').addEventListener('focus', function (e) {
@@ -15,7 +15,7 @@ document.querySelector('#email').addEventListener('focus', function (e) {
     },
     strokeDasharray: {
       value: '240 1386',
-      duration: 700,
+      duration: 700, 
       easing: 'easeOutQuart'
     }
   });

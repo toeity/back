@@ -11,7 +11,7 @@
 	<title>Home Page</title>
 </head>   
 
-<body>   
+<body>
 	<div class="container">
 		<nav class="menu">
 			<ul>
@@ -51,7 +51,7 @@
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-group col-md-3">
 							<h5>
-								จำนวนเด็ก <ion-icon name="happy-outline" class="icon"></ion-icon>
+								จำนวนเด็ก <ion-icon name="happy-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -62,7 +62,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupa col-md-3">
-							<h5>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="icon"></ion-icon>
+							<h5>จำนวนผู้ปกครอง <ion-icon name="person-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -73,7 +73,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupb col-md-3">
-							<h5>จำนวนครูประจำรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							<h5>จำนวนครูประจำรถ <ion-icon name="person-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -84,7 +84,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupc col-md-3">
-							<h5>จำนวนคนขับรถ <ion-icon name="person-outline" class="icon"></ion-icon>
+							<h5>จำนวนคนขับรถ <ion-icon name="person-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -95,7 +95,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupd col-md-3">
-							<h5>จำนวนผู้บริหาร <ion-icon name="person-outline" class="icon"></ion-icon>
+							<h5>จำนวนผู้บริหาร <ion-icon name="person-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -105,9 +105,8 @@
 						</div>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-
 						<div class="card-groupe col-md-3">
-							<h5>จำนวนแอดมิน <ion-icon name="person-outline" class="icon"></ion-icon>
+							<h5>จำนวนแอดมิน <ion-icon name="person-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -118,7 +117,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupf col-md-3">
-							<h5>จำนวนรถ <ion-icon name="car-outline" class="icon"></ion-icon>
+							<h5>จำนวนรถ <ion-icon name="car-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num">
@@ -129,7 +128,7 @@
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
 						<div class="card-groupg col-md-3">
-							<h5>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="icon"></ion-icon>
+							<h5>ผู้ใช้ทั้งหมด <ion-icon name="people-outline" class="iconi"></ion-icon>
 							</h5>
 							<div>
 								<p class="num" id="userall">
@@ -140,11 +139,11 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 ">
+				<div class="col-md-5 ">
 					<h4 class="countuser">จำนวนผู้ใช้ในระบบ <%=result.userAll%> คน</h4>
 					<canvas id="myChart"></canvas>
 				</div>
-				<div class="col-md-6  ">
+				<div class="col-md-7  ">
 					
 					<h4 class="countevent" >จำนวนเหตุการณ์ <%=allAccident%> เหตุการณ์</h4>
 					<View clss="rowmyChart1" />
@@ -195,6 +194,8 @@
 				plugins: {
 					legend: {
 						position: 'right',
+						// position: 'top',
+
 					}
 				}
 			}
@@ -208,7 +209,7 @@
 				datasets: [{
 					label: 'จำนวนเหตุการณ์',
 					data: "<%=noti%>".split(','),
-					fill: false,
+					fill: true,
 					hoverOffset: 3,
 					borderColor: 'rgb(250, 128, 114)',
 

@@ -17,35 +17,33 @@
 	<div class="container">
 		<nav class="menu">
 			<ul>
-				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket"
-						style="width:100px;height:100px; margin:30px 70px 30px"></div>
 				<input class="bar" type="radio" name="menu" id="archive" checked>
+				<div class="logo"><img src="/assets/logo.png" alt="Girl in a jacket" style="width:100px;height:100px;">
+				</div>
 
 				<li>
 					<!-- <label for="archive" class="title"><i class="fa fa-folder"></i>Archive</label> -->
-					<a  onclick="linkPage('/Home')">
+					<a onclick="linkPage('/Home')">
 						<ion-icon name="home-outline" class="icon"></ion-icon>dashboard
 					</a>
-					<a  onclick="linkPage('/Requestuser')">
+					<a onclick="linkPage('/Requestuser')">
 						<ion-icon name="person-outline" class="icon"></ion-icon>
 						อนุมัติสิทธิผู้ใช้
 					</a>
-					<a  onclick="linkPage('/Authuser')">
+					<a onclick="linkPage('/Authuser')">
 						<ion-icon name="people-outline" class="icon"></ion-icon>จัดการสิทธิ์ผู้ใช้
 					</a>
-					<a  onclick="linkPage('/Cardata')">
+					<a onclick="linkPage('/Cardata')">
 						<ion-icon name="settings-outline" class="icon"></ion-icon>จัดการข้อมูลรถ
 					</a>
-					<a  onclick="linkPage('/Leaveinfo')">
+					<a onclick="linkPage('/Leaveinfo')">
 						<ion-icon name="document-text-outline" class="icon"></ion-icon>จัดการข้อมูลการลา
 					</a>
-					
+
 					<a onclick="logout()">
 						<ion-icon name="log-out-outline" class="icon"></ion-icon>ออกจากระบบ
 					</a>
-
 				</li>
-
 			</ul>
 		</nav>
 		<main class="main">
@@ -76,8 +74,8 @@
 							</div>
 
 							<div>
-								<a style="width: 80px; height: 32px; margin-top: 25px;"
-								 onclick="linkPage('/Addcar')" role="button" class="btn btn-primary">
+								<a style="width: 80px; height: 32px; margin-top: 25px;" onclick="linkPage('/Addcar')"
+									role="button" class="btn btn-primary">
 									<ion-icon name="add-circle-outline" class="icon"></ion-icon>เพิ่ม
 								</a>
 							</div>
@@ -107,15 +105,12 @@
 
 								<td>
 									<a style="width: 40px; height: 30px"
-									href="{{settingDefault.apiurl}}/Viewcar/{{property.car_no}}"
-
-										 role="button"
+										href="{{settingDefault.apiurl}}/Viewcar/{{property.car_no}}" role="button"
 										class="btn btn-info">
 										<ion-icon name="eye-outline"></ion-icon>
 									</a>
 									<a style="width: 40px; height: 30px"
-									href="{{settingDefault.apiurl}}/Editcar/{{property.car_no}}"
-									role="button"
+										href="{{settingDefault.apiurl}}/Editcar/{{property.car_no}}" role="button"
 										class="btn btn-warning">
 										<ion-icon name="create-outline"></ion-icon>
 									</a>
@@ -123,8 +118,7 @@
 										role="button" class="btn btn-danger">
 										<ion-icon name="trash-outline"></ion-icon>
 									</a>
-									<form hidden="true" action="/delete-car" method="POST"
-										id="del-{{property.car_no}}">
+									<form hidden="true" action="/delete-car" method="POST" id="del-{{property.car_no}}">
 										<input type="submit" />
 										<input type="hidden" name="car_no" value="{{property.car_no}}" />
 									</form>
@@ -133,12 +127,13 @@
 							</tr>
 						</table>
 						<ul id="pagination">
-							
+
 							<nav class="flex flex-row flex-nowrap justify-between ">
-						<li ng-repeat="(key,value) in range" ng-click="paginate(key)" ng-class="{active:page===key}"><a href="#">{{key+1}}</a></li>
+								<li ng-repeat="(key,value) in range" ng-click="paginate(key)"
+									ng-class="{active:page===key}"><a href="#">{{key+1}}</a></li>
 							</nav>
-						
-					</ul>
+
+						</ul>
 						<!-- <a style="width: 80px; height: 30px"  href="http://localhost:5001/Addcar" role="button" class="btn btn-primary"><ion-icon name="add-circle-outline"  class="icon"></ion-icon>เพิ่ม</a> -->
 		</main>
 	</div>
@@ -201,7 +196,7 @@
 
 			let result = JSON.parse('<%=result%>'.replaceAll("&#34;", "\""));
 			let i = 0;
-			$scope.range = Array.from({length: result.length/ 10+1},()=>i++);
+			$scope.range = Array.from({ length: result.length / 10 + 1 }, () => i++);
 			console.log($scope.length);
 			$scope.properties = result.slice($scope.page * $scope.limit, $scope.page * $scope.limit + 10)
 		}]);
@@ -241,8 +236,8 @@
 	<script src="/js/auth.js"></script>
 	<script src="/js/app.js"></script>
 	<script>
-		 hasLogin();
-	</script> 
+		hasLogin();
+	</script>
 </body>
 
 </html>

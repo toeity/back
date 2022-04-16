@@ -6,25 +6,34 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
 body {
-	font-family: 'Montserrat', sans-serif; 
+	font-family: 'Montserrat', sans-serif;
 }
+
 .container {
-	width: 100%;
+	width: 100%; 
 	height: 100%;
+	
 }
+
 nav {
 	position: fixed;
 	display: flex;
 	align-items: flex-start;
 	width: 15%;
 	height: 100%;
-	background-color: #fff;
+	z-index: 1;
 }
-.icon{
-  margin-right:10px;
-  width: 20px;
-  height: 20px;
+nav .logo{
+	
+	display: flex;
+}
+.icon {
+
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
 }
 
 main {
@@ -33,89 +42,130 @@ main {
 	width: 85%;
 	height: 100%;
 	background-color: #ff9900;
-	overflow: auto;
+	overflow: hidden;
 	padding: 40px;
 }
-.txt {
-	font-weight: bold;
-	margin-bottom: 50px;
-	font-size: 35px;
-	text-align:left;
-  color: #fff;
-}
+
 h3 {
 	font-weight: bold;
 	margin-bottom: 50px;
 	font-size: 55px;
-	text-align:left;
-  color: #fff;
+	text-align: left;
+	color: #fff;
 }
+
 p {
 	margin-bottom: 0px;
 	line-height: 26px;
 }
-li, ul label.title, ul, a {
+
+li,
+ul label.title,
+ul,
+a {
 	width: 100%;
 	color: #000;
 	font-family: 'Montserrat', sans-serif;
 	display: block;
 	font-weight: bold;
+	
 }
+
 ul label {
 	height: 30px;
 }
-ul{
-  height: 300px;
 
+ul {
+	height: 20%;
+	
 }
-ul li{
+ul img{
+	margin: 20%;
+}
+/* ul li {
 	height: 35px;
-	overflow: hidden;
+	
 	transition: all .3s;
-}
+} */
+
 li {
-	display: block;
-	background-color: #fff;
+	display:contents;
 }
+
 label.title {
 	font-size: 14px;
 	background: linear-gradient(#ff9900, #f78719);
 	padding: 10px 15px;
 	cursor: pointer;
-  transition: all .25s;
+	transition: all .25s;
 }
-a{
+
+a {
 	font-size: 12px;
 	text-decoration: none;
-	color: #000;
+	color: rgb(0, 0, 0);
 	display: block;
 	padding: 10px 25px;
 	transition: all .25s;
 }
+
 a:hover {
 	background-color: #ff9900;
-  box-shadow: inset 5px 0px 0px 0px #fff;
+	box-shadow: inset 5px 0px 0px 0px #fff;
 }
+
 label:hover {
 	text-shadow: 0px 0px 10px #ff9900;
 }
+
 input[class="bar"] {
 	display: none;
 }
-#edit:checked + li, #archive:checked + li, #tools:checked + li, #preferences:checked + li {
+
+#edit:checked+li,
+#archive:checked+li,
+#tools:checked+li,
+#preferences:checked+li {
 	height: 300px;
 }
+
 i {
 	margin-right: 12px;
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 1040px) {
 	nav {
 		width: 100%;
 		position: relative;
+		/* background-color: #181be1; */
 	}
+	
 	main {
 		width: 100%;
 		position: relative;
+		/* background-color: #e11818; */
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	container {
+		flex-direction: column;
+		
+	}
+	
+	nav {
+		width: 100%;
+		position: relative;
+		align-items: center;
+		/* background-color: #e1c318; */
+		
+	}
+	
+	main {
+		width: 100%;
+		position: relative;
+		overflow: auto;
+		/* background-color: #e118bc; */
+		
 	}
 }
 .card
