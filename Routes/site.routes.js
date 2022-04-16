@@ -38,9 +38,9 @@ module.exports = function(app){
     app.get('/Leaveinfo', controller.LeaveinfoPage);
     app.get('/Leaveedit/:car_no',controller.LeaveeditPage);
     app.post('/Leaveedit/:car_no',controller.LeaveeditAction);
-    app.get('/*', (req,res)=>{
-        return res.redirect('/home');
-    })
+    // app.get('/*', (req,res)=>{
+    //     // return res.redirect('/home');
+    // })
 
 }
 
