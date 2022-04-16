@@ -3,6 +3,7 @@ const controller = require('../Controllers/site.controller');
 const db = require('../Database/DB');
 
 module.exports = function(app){
+    
     app.get('/Login', controller.LoginPage);
     // app.get('/Register', controller.RegisterPage);
     app.get('/Home', controller.HomePage); 
@@ -37,7 +38,9 @@ module.exports = function(app){
     app.get('/Leaveinfo', controller.LeaveinfoPage);
     app.get('/Leaveedit/:car_no',controller.LeaveeditPage);
     app.post('/Leaveedit/:car_no',controller.LeaveeditAction);
-
+    app.get('/*', (req,res)=>{
+        return res.redirect('/home');
+    })
 
 }
 
