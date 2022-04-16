@@ -69,7 +69,7 @@
         headers: {
           "Content-Type": "application/json; charset=utf8"
         },
-        url: 'http://localhost:5001/api/auth/login',
+        url: `${settingDefault.apiurl}/api/auth/login`,
         cors: true,
         data: JSON.stringify(
           {
