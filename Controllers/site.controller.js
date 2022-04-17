@@ -336,6 +336,8 @@ exports.AuthuserPage = function (req, res) {
     })
     // return res.render("Authuser")
 }
+
+
 exports.DeleteUserAction = function (req, res) {
     try {
         User.destroy({ where: { user_id: req.body.user_id } }).then(() => {

@@ -116,8 +116,7 @@
 										role="button" class="btn btn-danger">
 										<ion-icon name="trash-outline"></ion-icon>
 									</a>
-									<form hidden="true" action="/delete-user" method="POST"
-										id="del-{{property.user_id}}">
+									<form hidden="true" action="/delete-user" method="POST" id="del-{{property.user_id}}">
 										<input type="submit" />
 										<input type="hidden" name="user_id" value="{{property.user_id}}" />
 									</form>
@@ -171,6 +170,7 @@
 			$scope.page = 0;
 			$scope.reverseSort = false;
 			$scope.sortClass = "text-primary";
+			
 			$scope.deleteUser = function (user_id) {
 				Swal.fire({
 					title: 'ยืนยันการลบข้อมูลผู้ใช้',
