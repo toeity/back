@@ -1,7 +1,7 @@
 
 var settingDefault = {
-//  apiurl: "http://localhost:5001" //prod
-   apiurl: "http://45.91.135.221" //dev
+  apiurl: "http://localhost:5001" //prod
+ //  apiurl: "http://45.91.135.221" //dev
 };
 var current = null;
 document.querySelector('#email').addEventListener('focus', function (e) {
