@@ -234,9 +234,7 @@ table.gridtable td {
     /* .hoverTable tr:hover {
           background-color: #ffff99;
     } */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    select {padding-right:18px}
-}
+
 
 /* label {position:relative} */
 label:after {
